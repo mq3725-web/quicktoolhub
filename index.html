@@ -7,32 +7,268 @@
 <title>QuickToolHub - Free Online Tools</title>
 
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#f5f7fb;color:#222}
-header{background:#2563eb;color:white;padding:18px 8%;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:24px;font-weight:bold}
-nav a{color:white;text-decoration:none;margin-left:20px}
-.hero{text-align:center;padding:70px 20px;background:white}
-.hero h1{font-size:42px;margin-bottom:10px}
-.hero p{color:#666;font-size:18px}
-.search{width:90%;max-width:600px;padding:15px;margin-top:20px;border:1px solid #ddd;border-radius:8px;font-size:16px}
-.tools{padding:50px 8%}
-.tools h2{text-align:center;margin-bottom:30px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card{background:white;padding:25px;border-radius:12px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.08);cursor:pointer;transition:.3s}
-.card:hover{transform:translateY(-5px)}
-.card p{color:#666}
-.tool{display:none;max-width:600px;margin:40px auto;padding:30px;background:white;border-radius:12px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.08)}
-.tool input,.tool textarea,.tool select{width:100%;padding:14px;margin:8px 0;border:1px solid #ddd;border-radius:8px;font-size:16px}
-.tool textarea{height:150px}
-button{background:#2563eb;color:white;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-size:16px;margin:8px}
-.back{background:#555}
-.result{margin-top:20px;padding:15px;background:#eef4ff;border-radius:8px;font-weight:bold;word-break:break-word}
-footer{background:#111827;color:white;text-align:center;padding:20px;margin-top:40px}
+*{
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  margin:0;
+  background:#f6f8fc;
+  color:#1f2937;
+}
+
+header{
+  background:linear-gradient(135deg,#2563eb,#4f46e5);
+  color:white;
+  padding:18px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:#bfdbfe;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:22px;
+  font-size:15px;
+}
+
+.hero{
+  text-align:center;
+  padding:85px 20px 70px;
+  background:linear-gradient(135deg,#eff6ff,#ffffff);
+}
+
+.badge{
+  display:inline-block;
+  background:#dbeafe;
+  color:#2563eb;
+  padding:8px 16px;
+  border-radius:30px;
+  font-size:14px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:48px;
+  margin:0 0 15px;
+  color:#111827;
+}
+
+.hero h1 span{
+  color:#2563eb;
+}
+
+.hero p{
+  color:#6b7280;
+  font-size:18px;
+  max-width:600px;
+  margin:0 auto 28px;
+  line-height:1.6;
+}
+
+.search{
+  width:90%;
+  max-width:650px;
+  padding:17px 20px;
+  border:1px solid #d1d5db;
+  border-radius:12px;
+  font-size:16px;
+  outline:none;
+  box-shadow:0 5px 15px rgba(0,0,0,.05);
+}
+
+.search:focus{
+  border-color:#2563eb;
+}
+
+.tools{
+  max-width:1200px;
+  margin:auto;
+  padding:60px 20px;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:12px;
+  font-size:32px;
+}
+
+.section-subtitle{
+  text-align:center;
+  color:#6b7280;
+  margin-bottom:40px;
+}
+
+.category{
+  margin-top:50px;
+}
+
+.category-title{
+  font-size:23px;
+  margin-bottom:20px;
+  color:#111827;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
+  cursor:pointer;
+  transition:.25s;
+  border:1px solid #eef0f4;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 25px rgba(37,99,235,.15);
+}
+
+.icon{
+  font-size:32px;
+  margin-bottom:12px;
+}
+
+.card h3{
+  margin:0 0 10px;
+  font-size:18px;
+}
+
+.card p{
+  color:#6b7280;
+  font-size:14px;
+  margin:0;
+  line-height:1.5;
+}
+
+.tool{
+  display:none;
+  max-width:650px;
+  margin:50px auto;
+  padding:35px;
+  background:white;
+  border-radius:18px;
+  box-shadow:0 8px 30px rgba(0,0,0,.1);
+}
+
+.tool h2{
+  text-align:center;
+  margin-top:0;
+}
+
+.tool input,
+.tool textarea,
+.tool select{
+  width:100%;
+  padding:14px;
+  margin:10px 0;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:16px;
+}
+
+.tool textarea{
+  height:160px;
+}
+
+button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:13px 22px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:16px;
+  margin-top:10px;
+}
+
+button:hover{
+  background:#1d4ed8;
+}
+
+.back{
+  background:#6b7280;
+  margin-left:8px;
+}
+
+.result{
+  margin-top:20px;
+  padding:16px;
+  background:#eff6ff;
+  border-radius:10px;
+  font-weight:bold;
+  text-align:center;
+  word-break:break-word;
+  line-height:1.6;
+}
+
+footer{
+  background:#111827;
+  color:#d1d5db;
+  text-align:center;
+  padding:40px 20px;
+  margin-top:60px;
+}
+
+footer h3{
+  color:white;
+  margin-top:0;
+}
+
+footer p{
+  margin:8px;
+}
+
 @media(max-width:600px){
-nav{display:none}
-.hero h1{font-size:30px}
-header{padding:15px 5%}
+  header{
+    padding:15px 5%;
+  }
+
+  nav{
+    display:none;
+  }
+
+  .hero{
+    padding:65px 15px 55px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .tools{
+    padding:40px 15px;
+  }
+
+  .tool{
+    margin:25px 15px;
+    padding:25px 20px;
+  }
 }
 </style>
 </head>
@@ -40,75 +276,137 @@ header{padding:15px 5%}
 <body>
 
 <header>
-<div class="logo">QuickToolHub</div>
-<nav>
-<a href="#" onclick="home()">Home</a>
-<a href="#tools">Tools</a>
-</nav>
+  <div class="logo">Quick<span>ToolHub</span></div>
+  <nav>
+    <a href="#" onclick="home()">Home</a>
+    <a href="#tools">Tools</a>
+  </nav>
 </header>
 
 <div id="homePage">
 
 <section class="hero">
-<h1>Free Online Tools</h1>
-<p>Fast, simple and free tools for everyone.</p>
-<input class="search" id="search" type="text" placeholder="Search for a tool..." onkeyup="searchTools()">
+  <div class="badge">⚡ Fast • Free • Easy to Use</div>
+  <h1>Everyday Tools, <span>Made Simple.</span></h1>
+  <p>Use our free online calculators, converters and productivity tools. No signup required.</p>
+
+  <input class="search" id="search" type="text"
+  placeholder="🔍 Search for a tool..."
+  onkeyup="searchTools()">
 </section>
 
 <section class="tools" id="tools">
-<h2>Popular Tools</h2>
+
+<h2 class="section-title">Explore Our Tools</h2>
+<p class="section-subtitle">Simple, fast and completely free online tools.</p>
+
+<div class="category">
+<h3 class="category-title">📊 Calculators</h3>
 
 <div class="grid">
 
 <div class="card" onclick="openTool('age')">
-<h3>🎂 Age Calculator</h3><p>Calculate your age.</p>
+<div class="icon">🎂</div>
+<h3>Age Calculator</h3>
+<p>Calculate your age instantly.</p>
 </div>
 
 <div class="card" onclick="openTool('percentage')">
-<h3>📊 Percentage Calculator</h3><p>Calculate percentage.</p>
+<div class="icon">📊</div>
+<h3>Percentage Calculator</h3>
+<p>Calculate percentages easily.</p>
 </div>
 
 <div class="card" onclick="openTool('cgpa')">
-<h3>🎓 CGPA Calculator</h3><p>Calculate CGPA percentage.</p>
+<div class="icon">🎓</div>
+<h3>CGPA Calculator</h3>
+<p>Convert CGPA into percentage.</p>
 </div>
 
 <div class="card" onclick="openTool('bmi')">
-<h3>⚖️ BMI Calculator</h3><p>Calculate your BMI.</p>
-</div>
-
-<div class="card" onclick="openTool('words')">
-<h3>📝 Word Counter</h3><p>Count words and characters.</p>
-</div>
-
-<div class="card" onclick="openTool('password')">
-<h3>🔐 Password Generator</h3><p>Generate strong passwords.</p>
+<div class="icon">⚖️</div>
+<h3>BMI Calculator</h3>
+<p>Calculate your body mass index.</p>
 </div>
 
 <div class="card" onclick="openTool('calculator')">
-<h3>🔢 Simple Calculator</h3><p>Perform basic calculations.</p>
+<div class="icon">🔢</div>
+<h3>Simple Calculator</h3>
+<p>Perform basic calculations.</p>
 </div>
 
 <div class="card" onclick="openTool('discount')">
-<h3>💰 Discount Calculator</h3><p>Calculate discount price.</p>
+<div class="icon">💰</div>
+<h3>Discount Calculator</h3>
+<p>Calculate discounts and savings.</p>
 </div>
 
-<div class="card" onclick="openTool('dateDiff')">
-<h3>📅 Date Difference</h3><p>Find days between two dates.</p>
 </div>
+</div>
+
+
+<div class="category">
+<h3 class="category-title">📝 Text & Security Tools</h3>
+
+<div class="grid">
+
+<div class="card" onclick="openTool('words')">
+<div class="icon">📝</div>
+<h3>Word Counter</h3>
+<p>Count words and characters.</p>
+</div>
+
+<div class="card" onclick="openTool('password')">
+<div class="icon">🔐</div>
+<h3>Password Generator</h3>
+<p>Create strong random passwords.</p>
+</div>
+
+</div>
+</div>
+
+
+<div class="category">
+<h3 class="category-title">🔄 Converters</h3>
+
+<div class="grid">
 
 <div class="card" onclick="openTool('unit')">
-<h3>🔄 Unit Converter</h3><p>Convert kilometers and miles.</p>
+<div class="icon">🔄</div>
+<h3>Unit Converter</h3>
+<p>Convert distance and weight units.</p>
+</div>
+
+</div>
+</div>
+
+
+<div class="category">
+<h3 class="category-title">🎲 Other Useful Tools</h3>
+
+<div class="grid">
+
+<div class="card" onclick="openTool('dateDiff')">
+<div class="icon">📅</div>
+<h3>Date Difference</h3>
+<p>Find days between two dates.</p>
 </div>
 
 <div class="card" onclick="openTool('random')">
-<h3>🎲 Random Number Generator</h3><p>Generate random numbers.</p>
+<div class="icon">🎲</div>
+<h3>Random Number Generator</h3>
+<p>Generate random numbers instantly.</p>
 </div>
 
 </div>
+</div>
+
 </section>
 </div>
 
-<!-- AGE -->
+
+<!-- TOOLS -->
+
 <div class="tool" id="age">
 <h2>🎂 Age Calculator</h2>
 <input type="date" id="birth">
@@ -117,7 +415,6 @@ header{padding:15px 5%}
 <button class="back" onclick="home()">← Back</button>
 </div>
 
-<!-- PERCENTAGE -->
 <div class="tool" id="percentage">
 <h2>📊 Percentage Calculator</h2>
 <input type="number" id="obtained" placeholder="Obtained Marks">
@@ -127,7 +424,6 @@ header{padding:15px 5%}
 <button class="back" onclick="home()">← Back</button>
 </div>
 
-<!-- CGPA -->
 <div class="tool" id="cgpa">
 <h2>🎓 CGPA Calculator</h2>
 <input type="number" id="cgpaInput" placeholder="Enter CGPA" step="0.01">
@@ -137,7 +433,6 @@ header{padding:15px 5%}
 <button class="back" onclick="home()">← Back</button>
 </div>
 
-<!-- BMI -->
 <div class="tool" id="bmi">
 <h2>⚖️ BMI Calculator</h2>
 <input type="number" id="weight" placeholder="Weight (KG)">
@@ -147,7 +442,32 @@ header{padding:15px 5%}
 <button class="back" onclick="home()">← Back</button>
 </div>
 
-<!-- WORD COUNTER -->
+<div class="tool" id="calculator">
+<h2>🔢 Simple Calculator</h2>
+<input type="number" id="num1" placeholder="First Number">
+
+<select id="operation">
+<option value="+">Addition (+)</option>
+<option value="-">Subtraction (-)</option>
+<option value="*">Multiplication (×)</option>
+<option value="/">Division (÷)</option>
+</select>
+
+<input type="number" id="num2" placeholder="Second Number">
+<button onclick="simpleCalculate()">Calculate</button>
+<div class="result" id="calculatorResult"></div>
+<button class="back" onclick="home()">← Back</button>
+</div>
+
+<div class="tool" id="discount">
+<h2>💰 Discount Calculator</h2>
+<input type="number" id="originalPrice" placeholder="Original Price">
+<input type="number" id="discountPercent" placeholder="Discount Percentage">
+<button onclick="calculateDiscount()">Calculate</button>
+<div class="result" id="discountResult"></div>
+<button class="back" onclick="home()">← Back</button>
+</div>
+
 <div class="tool" id="words">
 <h2>📝 Word Counter</h2>
 <textarea id="text" placeholder="Write or paste your text..." oninput="wordCount()"></textarea>
@@ -155,7 +475,6 @@ header{padding:15px 5%}
 <button class="back" onclick="home()">← Back</button>
 </div>
 
-<!-- PASSWORD -->
 <div class="tool" id="password">
 <h2>🔐 Password Generator</h2>
 <button onclick="generatePassword()">Generate Password</button>
@@ -163,36 +482,24 @@ header{padding:15px 5%}
 <button class="back" onclick="home()">← Back</button>
 </div>
 
-<!-- SIMPLE CALCULATOR -->
-<div class="tool" id="calculator">
-<h2>🔢 Simple Calculator</h2>
-<input type="number" id="num1" placeholder="First Number">
-<select id="operation">
-<option value="+">Addition (+)</option>
-<option value="-">Subtraction (-)</option>
-<option value="*">Multiplication (×)</option>
-<option value="/">Division (÷)</option>
+<div class="tool" id="unit">
+<h2>🔄 Unit Converter</h2>
+<input type="number" id="unitValue" placeholder="Enter Value">
+
+<select id="unitType">
+<option value="kmToMiles">Kilometers → Miles</option>
+<option value="milesToKm">Miles → Kilometers</option>
+<option value="kgToPounds">KG → Pounds</option>
+<option value="poundsToKg">Pounds → KG</option>
 </select>
-<input type="number" id="num2" placeholder="Second Number">
-<button onclick="simpleCalculate()">Calculate</button>
-<div class="result" id="calculatorResult"></div>
+
+<button onclick="convertUnit()">Convert</button>
+<div class="result" id="unitResult"></div>
 <button class="back" onclick="home()">← Back</button>
 </div>
 
-<!-- DISCOUNT -->
-<div class="tool" id="discount">
-<h2>💰 Discount Calculator</h2>
-<input type="number" id="originalPrice" placeholder="Original Price">
-<input type="number" id="discountPercent" placeholder="Discount Percentage">
-<button onclick="calculateDiscount()">Calculate Discount</button>
-<div class="result" id="discountResult"></div>
-<button class="back" onclick="home()">← Back</button>
-</div>
-
-<!-- DATE DIFFERENCE -->
 <div class="tool" id="dateDiff">
 <h2>📅 Date Difference Calculator</h2>
-<p>Select two dates:</p>
 <input type="date" id="date1">
 <input type="date" id="date2">
 <button onclick="calculateDateDiff()">Calculate Difference</button>
@@ -200,22 +507,6 @@ header{padding:15px 5%}
 <button class="back" onclick="home()">← Back</button>
 </div>
 
-<!-- UNIT CONVERTER -->
-<div class="tool" id="unit">
-<h2>🔄 Unit Converter</h2>
-<input type="number" id="unitValue" placeholder="Enter Value">
-<select id="unitType">
-<option value="kmToMiles">Kilometers → Miles</option>
-<option value="milesToKm">Miles → Kilometers</option>
-<option value="kgToPounds">KG → Pounds</option>
-<option value="poundsToKg">Pounds → KG</option>
-</select>
-<button onclick="convertUnit()">Convert</button>
-<div class="result" id="unitResult"></div>
-<button class="back" onclick="home()">← Back</button>
-</div>
-
-<!-- RANDOM NUMBER -->
 <div class="tool" id="random">
 <h2>🎲 Random Number Generator</h2>
 <input type="number" id="min" placeholder="Minimum Number">
@@ -225,9 +516,13 @@ header{padding:15px 5%}
 <button class="back" onclick="home()">← Back</button>
 </div>
 
+
 <footer>
-<p>© 2026 QuickToolHub | Free Online Tools</p>
+<h3>QuickToolHub</h3>
+<p>Fast, simple and free online tools for everyone.</p>
+<p>© 2026 QuickToolHub. All rights reserved.</p>
 </footer>
+
 
 <script>
 
@@ -246,50 +541,83 @@ window.scrollTo(0,0);
 
 function calculateAge(){
 let value=document.getElementById("birth").value;
-if(!value){document.getElementById("ageResult").innerHTML="Please select your date of birth.";return;}
-let birth=new Date(value),today=new Date();
+if(!value){
+document.getElementById("ageResult").innerHTML="Please select your date of birth.";
+return;
+}
+let birth=new Date(value);
+let today=new Date();
 let age=today.getFullYear()-birth.getFullYear();
 let month=today.getMonth()-birth.getMonth();
-if(month<0||(month===0&&today.getDate()<birth.getDate()))age--;
+
+if(month<0||(month===0&&today.getDate()<birth.getDate())) age--;
+
 document.getElementById("ageResult").innerHTML="Your age is "+age+" years.";
 }
 
 function calculatePercentage(){
 let obtained=parseFloat(document.getElementById("obtained").value);
 let total=parseFloat(document.getElementById("total").value);
-if(isNaN(obtained)||isNaN(total)||total<=0){document.getElementById("percentageResult").innerHTML="Please enter valid numbers.";return;}
-document.getElementById("percentageResult").innerHTML="Your Percentage: "+((obtained/total)*100).toFixed(2)+"%";
+
+if(isNaN(obtained)||isNaN(total)||total<=0){
+document.getElementById("percentageResult").innerHTML="Please enter valid numbers.";
+return;
+}
+
+document.getElementById("percentageResult").innerHTML=
+"Your Percentage: "+((obtained/total)*100).toFixed(2)+"%";
 }
 
 function calculateCGPA(){
 let cgpa=parseFloat(document.getElementById("cgpaInput").value);
 let scale=parseFloat(document.getElementById("cgpaScale").value);
-if(isNaN(cgpa)||isNaN(scale)||scale<=0){document.getElementById("cgpaResult").innerHTML="Please enter valid values.";return;}
-document.getElementById("cgpaResult").innerHTML="Approximate Percentage: "+((cgpa/scale)*100).toFixed(2)+"%";
+
+if(isNaN(cgpa)||isNaN(scale)||scale<=0){
+document.getElementById("cgpaResult").innerHTML="Please enter valid values.";
+return;
+}
+
+document.getElementById("cgpaResult").innerHTML=
+"Approximate Percentage: "+((cgpa/scale)*100).toFixed(2)+"%";
 }
 
 function calculateBMI(){
 let weight=parseFloat(document.getElementById("weight").value);
 let height=parseFloat(document.getElementById("height").value)/100;
-if(!weight||!height){document.getElementById("bmiResult").innerHTML="Please enter valid details.";return;}
-let bmi=weight/(height*height),category;
-if(bmi<18.5)category="Underweight";
-else if(bmi<25)category="Normal";
-else if(bmi<30)category="Overweight";
+
+if(!weight||!height){
+document.getElementById("bmiResult").innerHTML="Please enter valid details.";
+return;
+}
+
+let bmi=weight/(height*height);
+let category;
+
+if(bmi<18.5) category="Underweight";
+else if(bmi<25) category="Normal";
+else if(bmi<30) category="Overweight";
 else category="Obese";
-document.getElementById("bmiResult").innerHTML="BMI: "+bmi.toFixed(1)+" ("+category+")";
+
+document.getElementById("bmiResult").innerHTML=
+"BMI: "+bmi.toFixed(1)+" ("+category+")";
 }
 
 function wordCount(){
 let text=document.getElementById("text").value.trim();
 let words=text?text.split(/\s+/).length:0;
-document.getElementById("wordResult").innerHTML="Words: "+words+" | Characters: "+text.length;
+
+document.getElementById("wordResult").innerHTML=
+"Words: "+words+" | Characters: "+text.length;
 }
 
 function generatePassword(){
 let chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
 let password="";
-for(let i=0;i<12;i++)password+=chars.charAt(Math.floor(Math.random()*chars.length));
+
+for(let i=0;i<12;i++){
+password+=chars.charAt(Math.floor(Math.random()*chars.length));
+}
+
 document.getElementById("passwordResult").innerHTML=password;
 }
 
@@ -297,55 +625,91 @@ function simpleCalculate(){
 let a=parseFloat(document.getElementById("num1").value);
 let b=parseFloat(document.getElementById("num2").value);
 let op=document.getElementById("operation").value;
-if(isNaN(a)||isNaN(b)){document.getElementById("calculatorResult").innerHTML="Enter valid numbers.";return;}
+
+if(isNaN(a)||isNaN(b)){
+document.getElementById("calculatorResult").innerHTML="Enter valid numbers.";
+return;
+}
+
 let result;
-if(op==="+")result=a+b;
-if(op==="-")result=a-b;
-if(op==="*")result=a*b;
-if(op==="/")result=b!==0?a/b:"Cannot divide by zero";
+
+if(op==="+") result=a+b;
+if(op==="-") result=a-b;
+if(op==="*") result=a*b;
+if(op==="/") result=b!==0?a/b:"Cannot divide by zero";
+
 document.getElementById("calculatorResult").innerHTML="Result: "+result;
 }
 
 function calculateDiscount(){
 let price=parseFloat(document.getElementById("originalPrice").value);
 let discount=parseFloat(document.getElementById("discountPercent").value);
-if(isNaN(price)||isNaN(discount)){document.getElementById("discountResult").innerHTML="Enter valid values.";return;}
+
+if(isNaN(price)||isNaN(discount)){
+document.getElementById("discountResult").innerHTML="Enter valid values.";
+return;
+}
+
 let saved=price*(discount/100);
 let final=price-saved;
-document.getElementById("discountResult").innerHTML="You Save: "+saved.toFixed(2)+"<br>Final Price: "+final.toFixed(2);
+
+document.getElementById("discountResult").innerHTML=
+"You Save: "+saved.toFixed(2)+"<br>Final Price: "+final.toFixed(2);
 }
 
 function calculateDateDiff(){
 let d1=document.getElementById("date1").value;
 let d2=document.getElementById("date2").value;
-if(!d1||!d2){document.getElementById("dateDiffResult").innerHTML="Please select both dates.";return;}
+
+if(!d1||!d2){
+document.getElementById("dateDiffResult").innerHTML="Please select both dates.";
+return;
+}
+
 let diff=Math.abs(new Date(d2)-new Date(d1));
 let days=Math.ceil(diff/(1000*60*60*24));
-document.getElementById("dateDiffResult").innerHTML="Difference: "+days+" days";
+
+document.getElementById("dateDiffResult").innerHTML=
+"Difference: "+days+" days";
 }
 
 function convertUnit(){
 let value=parseFloat(document.getElementById("unitValue").value);
 let type=document.getElementById("unitType").value;
-if(isNaN(value)){document.getElementById("unitResult").innerHTML="Enter a valid value.";return;}
+
+if(isNaN(value)){
+document.getElementById("unitResult").innerHTML="Enter a valid value.";
+return;
+}
+
 let result;
-if(type==="kmToMiles")result=value*0.621371+" miles";
-if(type==="milesToKm")result=value*1.60934+" km";
-if(type==="kgToPounds")result=value*2.20462+" pounds";
-if(type==="poundsToKg")result=value*0.453592+" kg";
+
+if(type==="kmToMiles") result=(value*0.621371).toFixed(3)+" miles";
+if(type==="milesToKm") result=(value*1.60934).toFixed(3)+" km";
+if(type==="kgToPounds") result=(value*2.20462).toFixed(3)+" pounds";
+if(type==="poundsToKg") result=(value*0.453592).toFixed(3)+" kg";
+
 document.getElementById("unitResult").innerHTML="Result: "+result;
 }
 
 function generateRandom(){
 let min=parseInt(document.getElementById("min").value);
 let max=parseInt(document.getElementById("max").value);
-if(isNaN(min)||isNaN(max)||min>max){document.getElementById("randomResult").innerHTML="Enter a valid minimum and maximum.";return;}
+
+if(isNaN(min)||isNaN(max)||min>max){
+document.getElementById("randomResult").innerHTML="Enter a valid minimum and maximum.";
+return;
+}
+
 let random=Math.floor(Math.random()*(max-min+1))+min;
-document.getElementById("randomResult").innerHTML="Random Number: "+random;
+
+document.getElementById("randomResult").innerHTML=
+"Random Number: "+random;
 }
 
 function searchTools(){
 let search=document.getElementById("search").value.toLowerCase();
+
 document.querySelectorAll(".card").forEach(card=>{
 card.style.display=card.innerText.toLowerCase().includes(search)?"block":"none";
 });
