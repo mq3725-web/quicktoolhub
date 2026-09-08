@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickToolHub - Free Online Tools</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #222;
+    }
+
+    header {
+      background: #2563eb;
+      color: white;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+      background: white;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .search-box {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .tools-section {
+      padding: 50px 8%;
+    }
+
+    .tools-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 30px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .tool-card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .tool-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .tool-card p {
+      color: #666;
+      font-size: 14px;
+    }
+
+    footer {
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    @media(max-width: 600px) {
+      header {
+        padding: 15px 5%;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">QuickToolHub</div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#tools">Tools</a>
+    <a href="#">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Free Online Tools</h1>
+  <p>Fast, simple and free tools for everyone.</p>
+
+  <div class="search-box">
+    <input type="text" placeholder="Search for a tool...">
+  </div>
+</section>
+
+<section class="tools-section" id="tools">
+
+  <h2>Popular Tools</h2>
+
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <h3>🎂 Age Calculator</h3>
+      <p>Calculate your exact age easily.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3>📊 Percentage Calculator</h3>
+      <p>Calculate percentages quickly.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3>🎓 CGPA Calculator</h3>
+      <p>Calculate your CGPA easily.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3>⚖️ BMI Calculator</h3>
+      <p>Check your Body Mass Index.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3>📝 Word Counter</h3>
+      <p>Count words and characters.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3>🔐 Password Generator</h3>
+      <p>Create strong secure passwords.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 QuickToolHub | Free Online Tools</p>
+</footer>
+
+</body>
+</html>
