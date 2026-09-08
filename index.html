@@ -8,32 +8,32 @@
 <style>
 *{box-sizing:border-box;font-family:Arial,sans-serif}
 body{margin:0;background:#f6f8fc;color:#1f2937}
-header{background:linear-gradient(135deg,#2563eb,#4f46e5);color:white;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+header{background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
 .logo{font-size:25px;font-weight:bold}.logo span{color:#bfdbfe}
-nav a{color:white;text-decoration:none;margin-left:22px}
+nav a{color:#fff;text-decoration:none;margin-left:22px}
 .hero{text-align:center;padding:80px 20px 65px;background:linear-gradient(135deg,#eff6ff,#fff)}
 .badge{display:inline-block;background:#dbeafe;color:#2563eb;padding:8px 16px;border-radius:30px;font-size:14px;font-weight:bold;margin-bottom:18px}
 .hero h1{font-size:48px;margin:0 0 15px;color:#111827}.hero h1 span{color:#2563eb}
-.hero p{color:#6b7280;font-size:18px;max-width:600px;margin:0 auto 28px;line-height:1.6}
+.hero p{color:#6b7280;font-size:18px;max-width:650px;margin:0 auto 28px;line-height:1.6}
 .search{width:90%;max-width:650px;padding:17px 20px;border:1px solid #d1d5db;border-radius:12px;font-size:16px;outline:none}
 .tools{max-width:1200px;margin:auto;padding:60px 20px}
-.section-title{text-align:center;margin-bottom:12px;font-size:32px}
+.section-title{text-align:center;font-size:32px;margin-bottom:12px}
 .section-subtitle{text-align:center;color:#6b7280;margin-bottom:40px}
 .category{margin-top:45px}.category-title{font-size:23px;margin-bottom:20px;color:#111827}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card{background:white;padding:25px;border-radius:15px;box-shadow:0 5px 18px rgba(0,0,0,.07);cursor:pointer;transition:.25s;border:1px solid #eef0f4}
+.card{background:#fff;padding:25px;border-radius:15px;box-shadow:0 5px 18px rgba(0,0,0,.07);cursor:pointer;transition:.25s;border:1px solid #eef0f4}
 .card:hover{transform:translateY(-6px);box-shadow:0 12px 25px rgba(37,99,235,.15)}
 .icon{font-size:32px;margin-bottom:12px}.card h3{margin:0 0 10px;font-size:18px}.card p{color:#6b7280;font-size:14px;margin:0;line-height:1.5}
-.tool{display:none;max-width:650px;margin:50px auto;padding:35px;background:white;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.1)}
+.tool{display:none;max-width:650px;margin:50px auto;padding:35px;background:#fff;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.1)}
 .tool h2{text-align:center;margin-top:0}
 .tool input,.tool textarea,.tool select{width:100%;padding:14px;margin:10px 0;border:1px solid #d1d5db;border-radius:10px;font-size:16px}
-.tool textarea{height:160px}
-button{background:#2563eb;color:white;border:none;padding:13px 22px;border-radius:10px;cursor:pointer;font-size:16px;margin-top:10px}
-.back{background:#6b7280;margin-left:8px}
-.result{margin-top:20px;padding:16px;background:#eff6ff;border-radius:10px;font-weight:bold;text-align:center;word-break:break-word;line-height:1.6}
+.tool textarea{height:150px}
+button{background:#2563eb;color:#fff;border:none;padding:13px 22px;border-radius:10px;cursor:pointer;font-size:16px;margin-top:10px}
+button:hover{background:#1d4ed8}.back{background:#6b7280;margin-left:8px}
+.result{margin-top:20px;padding:16px;background:#eff6ff;border-radius:10px;font-weight:bold;text-align:center;line-height:1.6;word-break:break-word}
 footer{background:#111827;color:#d1d5db;text-align:center;padding:40px 20px;margin-top:60px}
-footer h3{color:white;margin-top:0}
-@media(max-width:600px){nav{display:none}.hero h1{font-size:34px}.hero{padding:65px 15px 55px}.tools{padding:40px 15px}.tool{margin:25px 15px;padding:25px 20px}}
+footer h3{color:#fff;margin-top:0}
+@media(max-width:600px){nav{display:none}.hero h1{font-size:34px}.hero{padding:60px 15px}.tools{padding:40px 15px}.tool{margin:25px 15px;padding:25px 20px}}
 </style>
 </head>
 
@@ -41,18 +41,15 @@ footer h3{color:white;margin-top:0}
 
 <header>
 <div class="logo">Quick<span>ToolHub</span></div>
-<nav>
-<a href="#" onclick="home()">Home</a>
-<a href="#tools">Tools</a>
-</nav>
+<nav><a href="#" onclick="home()">Home</a><a href="#tools">Tools</a></nav>
 </header>
 
 <div id="homePage">
 <section class="hero">
 <div class="badge">⚡ Fast • Free • Easy to Use</div>
 <h1>Everyday Tools, <span>Made Simple.</span></h1>
-<p>Use our free online calculators, converters and productivity tools. No signup required.</p>
-<input class="search" id="search" type="text" placeholder="🔍 Search for a tool..." onkeyup="searchTools()">
+<p>Free online calculators, converters and productivity tools. No signup required.</p>
+<input class="search" id="search" placeholder="🔍 Search for a tool..." onkeyup="searchTools()">
 </section>
 
 <section class="tools" id="tools">
@@ -63,14 +60,15 @@ footer h3{color:white;margin-top:0}
 <h3 class="category-title">📊 Calculators</h3>
 <div class="grid">
 <div class="card" onclick="openTool('age')"><div class="icon">🎂</div><h3>Age Calculator</h3><p>Calculate your age instantly.</p></div>
+<div class="card" onclick="openTool('ageDiff')"><div class="icon">👥</div><h3>Age Difference</h3><p>Find age difference between two dates.</p></div>
 <div class="card" onclick="openTool('percentage')"><div class="icon">📊</div><h3>Percentage Calculator</h3><p>Calculate percentages easily.</p></div>
 <div class="card" onclick="openTool('cgpa')"><div class="icon">🎓</div><h3>CGPA Calculator</h3><p>Convert CGPA into percentage.</p></div>
-<div class="card" onclick="openTool('gpa')"><div class="icon">🧮</div><h3>GPA Calculator</h3><p>Calculate your GPA from grades.</p></div>
-<div class="card" onclick="openTool('bmi')"><div class="icon">⚖️</div><h3>BMI Calculator</h3><p>Calculate your body mass index.</p></div>
+<div class="card" onclick="openTool('gpa')"><div class="icon">🧮</div><h3>GPA Calculator</h3><p>Calculate GPA from grade points.</p></div>
+<div class="card" onclick="openTool('bmi')"><div class="icon">⚖️</div><h3>BMI Calculator</h3><p>Calculate body mass index.</p></div>
 <div class="card" onclick="openTool('calculator')"><div class="icon">🔢</div><h3>Simple Calculator</h3><p>Perform basic calculations.</p></div>
 <div class="card" onclick="openTool('discount')"><div class="icon">💰</div><h3>Discount Calculator</h3><p>Calculate discounts and savings.</p></div>
-<div class="card" onclick="openTool('profit')"><div class="icon">📈</div><h3>Profit Calculator</h3><p>Calculate profit and profit percentage.</p></div>
-<div class="card" onclick="openTool('loan')"><div class="icon">🏦</div><h3>Loan Calculator</h3><p>Estimate monthly loan payments.</p></div>
+<div class="card" onclick="openTool('profit')"><div class="icon">📈</div><h3>Profit Calculator</h3><p>Calculate profit percentage.</p></div>
+<div class="card" onclick="openTool('loan')"><div class="icon">🏦</div><h3>Loan Calculator</h3><p>Estimate monthly payments.</p></div>
 </div>
 </div>
 
@@ -78,15 +76,18 @@ footer h3{color:white;margin-top:0}
 <h3 class="category-title">📝 Text & Security Tools</h3>
 <div class="grid">
 <div class="card" onclick="openTool('words')"><div class="icon">📝</div><h3>Word Counter</h3><p>Count words and characters.</p></div>
+<div class="card" onclick="openTool('characters')"><div class="icon">🔠</div><h3>Character Counter</h3><p>Count characters instantly.</p></div>
 <div class="card" onclick="openTool('case')"><div class="icon">🔤</div><h3>Case Converter</h3><p>Convert text into different cases.</p></div>
-<div class="card" onclick="openTool('password')"><div class="icon">🔐</div><h3>Password Generator</h3><p>Create strong random passwords.</p></div>
+<div class="card" onclick="openTool('password')"><div class="icon">🔐</div><h3>Password Generator</h3><p>Create strong passwords.</p></div>
 </div>
 </div>
 
 <div class="category">
 <h3 class="category-title">🔄 Converters</h3>
 <div class="grid">
-<div class="card" onclick="openTool('unit')"><div class="icon">🔄</div><h3>Unit Converter</h3><p>Convert distance and weight units.</p></div>
+<div class="card" onclick="openTool('unit')"><div class="icon">🔄</div><h3>Unit Converter</h3><p>Convert distance and weight.</p></div>
+<div class="card" onclick="openTool('temperature')"><div class="icon">🌡️</div><h3>Temperature Converter</h3><p>Convert Celsius and Fahrenheit.</p></div>
+<div class="card" onclick="openTool('length')"><div class="icon">📏</div><h3>Length Converter</h3><p>Convert meters, feet and inches.</p></div>
 </div>
 </div>
 
@@ -94,7 +95,8 @@ footer h3{color:white;margin-top:0}
 <h3 class="category-title">🎲 Other Useful Tools</h3>
 <div class="grid">
 <div class="card" onclick="openTool('dateDiff')"><div class="icon">📅</div><h3>Date Difference</h3><p>Find days between two dates.</p></div>
-<div class="card" onclick="openTool('random')"><div class="icon">🎲</div><h3>Random Number Generator</h3><p>Generate random numbers instantly.</p></div>
+<div class="card" onclick="openTool('countdown')"><div class="icon">⏳</div><h3>Countdown Timer</h3><p>Countdown to any date.</p></div>
+<div class="card" onclick="openTool('random')"><div class="icon">🎲</div><h3>Random Number Generator</h3><p>Generate random numbers.</p></div>
 </div>
 </div>
 </section>
@@ -103,24 +105,23 @@ footer h3{color:white;margin-top:0}
 <!-- AGE -->
 <div class="tool" id="age"><h2>🎂 Age Calculator</h2><input type="date" id="birth"><button onclick="calculateAge()">Calculate Age</button><div class="result" id="ageResult"></div><button class="back" onclick="home()">← Back</button></div>
 
+<!-- AGE DIFFERENCE -->
+<div class="tool" id="ageDiff"><h2>👥 Age Difference Calculator</h2><input type="date" id="person1"><input type="date" id="person2"><button onclick="calculateAgeDiff()">Calculate</button><div class="result" id="ageDiffResult"></div><button class="back" onclick="home()">← Back</button></div>
+
 <!-- PERCENTAGE -->
 <div class="tool" id="percentage"><h2>📊 Percentage Calculator</h2><input type="number" id="obtained" placeholder="Obtained Marks"><input type="number" id="total" placeholder="Total Marks"><button onclick="calculatePercentage()">Calculate</button><div class="result" id="percentageResult"></div><button class="back" onclick="home()">← Back</button></div>
 
 <!-- CGPA -->
-<div class="tool" id="cgpa"><h2>🎓 CGPA Calculator</h2><input type="number" id="cgpaInput" placeholder="Enter CGPA" step="0.01"><input type="number" id="cgpaScale" placeholder="CGPA Scale (e.g. 4)" value="4"><button onclick="calculateCGPA()">Calculate Percentage</button><div class="result" id="cgpaResult"></div><button class="back" onclick="home()">← Back</button></div>
+<div class="tool" id="cgpa"><h2>🎓 CGPA Calculator</h2><input type="number" id="cgpaInput" placeholder="Enter CGPA" step="0.01"><input type="number" id="cgpaScale" value="4" placeholder="CGPA Scale"><button onclick="calculateCGPA()">Calculate</button><div class="result" id="cgpaResult"></div><button class="back" onclick="home()">← Back</button></div>
 
 <!-- GPA -->
-<div class="tool" id="gpa">
-<h2>🧮 GPA Calculator</h2>
-<p>Enter grade points for up to 5 subjects.</p>
-<input type="number" class="gpaGrade" placeholder="Subject 1 Grade Point (e.g. 4)" step="0.01">
-<input type="number" class="gpaGrade" placeholder="Subject 2 Grade Point" step="0.01">
-<input type="number" class="gpaGrade" placeholder="Subject 3 Grade Point" step="0.01">
-<input type="number" class="gpaGrade" placeholder="Subject 4 Grade Point" step="0.01">
-<input type="number" class="gpaGrade" placeholder="Subject 5 Grade Point" step="0.01">
-<button onclick="calculateGPA()">Calculate GPA</button>
-<div class="result" id="gpaResult"></div><button class="back" onclick="home()">← Back</button>
-</div>
+<div class="tool" id="gpa"><h2>🧮 GPA Calculator</h2>
+<input class="gpaGrade" type="number" placeholder="Subject 1 Grade Point" step="0.01">
+<input class="gpaGrade" type="number" placeholder="Subject 2 Grade Point" step="0.01">
+<input class="gpaGrade" type="number" placeholder="Subject 3 Grade Point" step="0.01">
+<input class="gpaGrade" type="number" placeholder="Subject 4 Grade Point" step="0.01">
+<input class="gpaGrade" type="number" placeholder="Subject 5 Grade Point" step="0.01">
+<button onclick="calculateGPA()">Calculate GPA</button><div class="result" id="gpaResult"></div><button class="back" onclick="home()">← Back</button></div>
 
 <!-- BMI -->
 <div class="tool" id="bmi"><h2>⚖️ BMI Calculator</h2><input type="number" id="weight" placeholder="Weight (KG)"><input type="number" id="height" placeholder="Height (CM)"><button onclick="calculateBMI()">Calculate BMI</button><div class="result" id="bmiResult"></div><button class="back" onclick="home()">← Back</button></div>
@@ -132,36 +133,19 @@ footer h3{color:white;margin-top:0}
 <div class="tool" id="discount"><h2>💰 Discount Calculator</h2><input type="number" id="originalPrice" placeholder="Original Price"><input type="number" id="discountPercent" placeholder="Discount Percentage"><button onclick="calculateDiscount()">Calculate</button><div class="result" id="discountResult"></div><button class="back" onclick="home()">← Back</button></div>
 
 <!-- PROFIT -->
-<div class="tool" id="profit">
-<h2>📈 Profit Calculator</h2>
-<input type="number" id="costPrice" placeholder="Cost Price">
-<input type="number" id="sellingPrice" placeholder="Selling Price">
-<button onclick="calculateProfit()">Calculate Profit</button>
-<div class="result" id="profitResult"></div><button class="back" onclick="home()">← Back</button>
-</div>
+<div class="tool" id="profit"><h2>📈 Profit Calculator</h2><input type="number" id="costPrice" placeholder="Cost Price"><input type="number" id="sellingPrice" placeholder="Selling Price"><button onclick="calculateProfit()">Calculate Profit</button><div class="result" id="profitResult"></div><button class="back" onclick="home()">← Back</button></div>
 
 <!-- LOAN -->
-<div class="tool" id="loan">
-<h2>🏦 Loan Calculator</h2>
-<input type="number" id="loanAmount" placeholder="Loan Amount">
-<input type="number" id="loanRate" placeholder="Annual Interest Rate (%)">
-<input type="number" id="loanYears" placeholder="Loan Period (Years)">
-<button onclick="calculateLoan()">Calculate</button>
-<div class="result" id="loanResult"></div><button class="back" onclick="home()">← Back</button>
-</div>
+<div class="tool" id="loan"><h2>🏦 Loan Calculator</h2><input type="number" id="loanAmount" placeholder="Loan Amount"><input type="number" id="loanRate" placeholder="Annual Interest Rate (%)"><input type="number" id="loanYears" placeholder="Loan Period (Years)"><button onclick="calculateLoan()">Calculate</button><div class="result" id="loanResult"></div><button class="back" onclick="home()">← Back</button></div>
 
 <!-- WORD COUNTER -->
-<div class="tool" id="words"><h2>📝 Word Counter</h2><textarea id="text" placeholder="Write or paste your text..." oninput="wordCount()"></textarea><div class="result" id="wordResult">Words: 0 | Characters: 0</div><button class="back" onclick="home()">← Back</button></div>
+<div class="tool" id="words"><h2>📝 Word Counter</h2><textarea id="text" placeholder="Write or paste text..." oninput="wordCount()"></textarea><div class="result" id="wordResult">Words: 0 | Characters: 0</div><button class="back" onclick="home()">← Back</button></div>
 
-<!-- CASE CONVERTER -->
-<div class="tool" id="case">
-<h2>🔤 Case Converter</h2>
-<textarea id="caseText" placeholder="Write or paste your text..."></textarea>
-<button onclick="toUpper()">UPPERCASE</button>
-<button onclick="toLower()">lowercase</button>
-<button onclick="toTitle()">Title Case</button>
-<div class="result" id="caseResult"></div><button class="back" onclick="home()">← Back</button>
-</div>
+<!-- CHARACTER COUNTER -->
+<div class="tool" id="characters"><h2>🔠 Character Counter</h2><textarea id="charText" placeholder="Write or paste text..." oninput="characterCount()"></textarea><div class="result" id="characterResult">Characters: 0</div><button class="back" onclick="home()">← Back</button></div>
+
+<!-- CASE -->
+<div class="tool" id="case"><h2>🔤 Case Converter</h2><textarea id="caseText" placeholder="Write text..."></textarea><button onclick="convertCase('upper')">UPPERCASE</button><button onclick="convertCase('lower')">lowercase</button><button onclick="convertCase('title')">Title Case</button><div class="result" id="caseResult"></div><button class="back" onclick="home()">← Back</button></div>
 
 <!-- PASSWORD -->
 <div class="tool" id="password"><h2>🔐 Password Generator</h2><button onclick="generatePassword()">Generate Password</button><div class="result" id="passwordResult"></div><button class="back" onclick="home()">← Back</button></div>
@@ -169,129 +153,49 @@ footer h3{color:white;margin-top:0}
 <!-- UNIT -->
 <div class="tool" id="unit"><h2>🔄 Unit Converter</h2><input type="number" id="unitValue" placeholder="Enter Value"><select id="unitType"><option value="kmToMiles">Kilometers → Miles</option><option value="milesToKm">Miles → Kilometers</option><option value="kgToPounds">KG → Pounds</option><option value="poundsToKg">Pounds → KG</option></select><button onclick="convertUnit()">Convert</button><div class="result" id="unitResult"></div><button class="back" onclick="home()">← Back</button></div>
 
+<!-- TEMPERATURE -->
+<div class="tool" id="temperature"><h2>🌡️ Temperature Converter</h2><input type="number" id="tempValue" placeholder="Enter Temperature"><select id="tempType"><option value="cToF">Celsius → Fahrenheit</option><option value="fToC">Fahrenheit → Celsius</option></select><button onclick="convertTemperature()">Convert</button><div class="result" id="tempResult"></div><button class="back" onclick="home()">← Back</button></div>
+
+<!-- LENGTH -->
+<div class="tool" id="length"><h2>📏 Length Converter</h2><input type="number" id="lengthValue" placeholder="Enter Value"><select id="lengthType"><option value="mToFt">Meters → Feet</option><option value="ftToM">Feet → Meters</option><option value="cmToIn">Centimeters → Inches</option><option value="inToCm">Inches → Centimeters</option></select><button onclick="convertLength()">Convert</button><div class="result" id="lengthResult"></div><button class="back" onclick="home()">← Back</button></div>
+
 <!-- DATE DIFFERENCE -->
-<div class="tool" id="dateDiff"><h2>📅 Date Difference Calculator</h2><input type="date" id="date1"><input type="date" id="date2"><button onclick="calculateDateDiff()">Calculate Difference</button><div class="result" id="dateDiffResult"></div><button class="back" onclick="home()">← Back</button></div>
+<div class="tool" id="dateDiff"><h2>📅 Date Difference</h2><input type="date" id="date1"><input type="date" id="date2"><button onclick="calculateDateDiff()">Calculate Difference</button><div class="result" id="dateDiffResult"></div><button class="back" onclick="home()">← Back</button></div>
+
+<!-- COUNTDOWN -->
+<div class="tool" id="countdown"><h2>⏳ Countdown Timer</h2><input type="datetime-local" id="countdownDate"><button onclick="startCountdown()">Start Countdown</button><div class="result" id="countdownResult">Set a future date and time.</div><button class="back" onclick="home()">← Back</button></div>
 
 <!-- RANDOM -->
 <div class="tool" id="random"><h2>🎲 Random Number Generator</h2><input type="number" id="min" placeholder="Minimum Number"><input type="number" id="max" placeholder="Maximum Number"><button onclick="generateRandom()">Generate</button><div class="result" id="randomResult"></div><button class="back" onclick="home()">← Back</button></div>
 
-<footer>
-<h3>QuickToolHub</h3>
-<p>Fast, simple and free online tools for everyone.</p>
-<p>© 2026 QuickToolHub. All rights reserved.</p>
-</footer>
+<footer><h3>QuickToolHub</h3><p>Fast, simple and free online tools for everyone.</p><p>© 2026 QuickToolHub. All rights reserved.</p></footer>
 
 <script>
 function openTool(id){document.getElementById("homePage").style.display="none";document.querySelectorAll(".tool").forEach(t=>t.style.display="none");document.getElementById(id).style.display="block";window.scrollTo(0,0)}
 function home(){document.getElementById("homePage").style.display="block";document.querySelectorAll(".tool").forEach(t=>t.style.display="none");window.scrollTo(0,0)}
 
-function calculateAge(){
-let v=document.getElementById("birth").value;
-if(!v)return document.getElementById("ageResult").innerHTML="Please select your date of birth.";
-let b=new Date(v),t=new Date(),age=t.getFullYear()-b.getFullYear();
-if(t.getMonth()<b.getMonth()||(t.getMonth()==b.getMonth()&&t.getDate()<b.getDate()))age--;
-document.getElementById("ageResult").innerHTML="Your age is "+age+" years.";
-}
-
-function calculatePercentage(){
-let a=parseFloat(obtained.value),b=parseFloat(total.value);
-if(isNaN(a)||isNaN(b)||b<=0)return percentageResult.innerHTML="Please enter valid numbers.";
-percentageResult.innerHTML="Your Percentage: "+(a/b*100).toFixed(2)+"%";
-}
-
-function calculateCGPA(){
-let a=parseFloat(cgpaInput.value),b=parseFloat(cgpaScale.value);
-if(isNaN(a)||isNaN(b)||b<=0)return cgpaResult.innerHTML="Please enter valid values.";
-cgpaResult.innerHTML="Approximate Percentage: "+(a/b*100).toFixed(2)+"%";
-}
-
-function calculateGPA(){
-let grades=[...document.querySelectorAll(".gpaGrade")].map(x=>parseFloat(x.value)).filter(x=>!isNaN(x));
-if(!grades.length)return gpaResult.innerHTML="Enter at least one grade point.";
-let avg=grades.reduce((a,b)=>a+b,0)/grades.length;
-gpaResult.innerHTML="Your GPA: "+avg.toFixed(2);
-}
-
-function calculateBMI(){
-let w=parseFloat(weight.value),h=parseFloat(height.value)/100;
-if(!w||!h)return bmiResult.innerHTML="Please enter valid details.";
-let b=w/(h*h),c=b<18.5?"Underweight":b<25?"Normal":b<30?"Overweight":"Obese";
-bmiResult.innerHTML="BMI: "+b.toFixed(1)+" ("+c+")";
-}
-
-function simpleCalculate(){
-let a=parseFloat(num1.value),b=parseFloat(num2.value),op=operation.value;
-if(isNaN(a)||isNaN(b))return calculatorResult.innerHTML="Enter valid numbers.";
-let r=op==="+"?a+b:op==="-"?a-b:op==="*"?a*b:b!==0?a/b:"Cannot divide by zero";
-calculatorResult.innerHTML="Result: "+r;
-}
-
-function calculateDiscount(){
-let p=parseFloat(originalPrice.value),d=parseFloat(discountPercent.value);
-if(isNaN(p)||isNaN(d))return discountResult.innerHTML="Enter valid values.";
-let s=p*d/100;
-discountResult.innerHTML="You Save: "+s.toFixed(2)+"<br>Final Price: "+(p-s).toFixed(2);
-}
-
-function calculateProfit(){
-let c=parseFloat(costPrice.value),s=parseFloat(sellingPrice.value);
-if(isNaN(c)||isNaN(s)||c<=0)return profitResult.innerHTML="Enter valid values.";
-let profit=s-c,percent=profit/c*100;
-profitResult.innerHTML="Profit: "+profit.toFixed(2)+"<br>Profit Percentage: "+percent.toFixed(2)+"%";
-}
-
-function calculateLoan(){
-let p=parseFloat(loanAmount.value),annual=parseFloat(loanRate.value),years=parseFloat(loanYears.value);
-if(isNaN(p)||isNaN(annual)||isNaN(years)||p<=0||years<=0)return loanResult.innerHTML="Please enter valid values.";
-let r=annual/100/12,n=years*12;
-let emi=r===0?p/n:p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
-loanResult.innerHTML="Estimated Monthly Payment: "+emi.toFixed(2)+"<br>Total Payment: "+(emi*n).toFixed(2);
-}
-
+function calculateAge(){let v=birth.value;if(!v)return ageResult.innerHTML="Please select your date of birth.";let b=new Date(v),t=new Date(),a=t.getFullYear()-b.getFullYear();if(t.getMonth()<b.getMonth()||(t.getMonth()==b.getMonth()&&t.getDate()<b.getDate()))a--;ageResult.innerHTML="Your age is "+a+" years."}
+function calculateAgeDiff(){let a=person1.value,b=person2.value;if(!a||!b)return ageDiffResult.innerHTML="Please select both dates.";let days=Math.abs(new Date(a)-new Date(b))/86400000;ageDiffResult.innerHTML="Age Difference: "+(days/365.25).toFixed(2)+" years";}
+function calculatePercentage(){let a=parseFloat(obtained.value),b=parseFloat(total.value);if(isNaN(a)||isNaN(b)||b<=0)return percentageResult.innerHTML="Please enter valid numbers.";percentageResult.innerHTML="Your Percentage: "+(a/b*100).toFixed(2)+"%"}
+function calculateCGPA(){let a=parseFloat(cgpaInput.value),b=parseFloat(cgpaScale.value);if(isNaN(a)||isNaN(b)||b<=0)return cgpaResult.innerHTML="Please enter valid values.";cgpaResult.innerHTML="Approximate Percentage: "+(a/b*100).toFixed(2)+"%"}
+function calculateGPA(){let g=[...document.querySelectorAll(".gpaGrade")].map(x=>parseFloat(x.value)).filter(x=>!isNaN(x));if(!g.length)return gpaResult.innerHTML="Enter at least one grade point.";gpaResult.innerHTML="Your GPA: "+(g.reduce((a,b)=>a+b,0)/g.length).toFixed(2)}
+function calculateBMI(){let w=parseFloat(weight.value),h=parseFloat(height.value)/100;if(!w||!h)return bmiResult.innerHTML="Please enter valid details.";let b=w/(h*h),c=b<18.5?"Underweight":b<25?"Normal":b<30?"Overweight":"Obese";bmiResult.innerHTML="BMI: "+b.toFixed(1)+" ("+c+")"}
+function simpleCalculate(){let a=parseFloat(num1.value),b=parseFloat(num2.value),o=operation.value;if(isNaN(a)||isNaN(b))return calculatorResult.innerHTML="Enter valid numbers.";let r=o==="+"?a+b:o==="-"?a-b:o==="*"?a*b:b!==0?a/b:"Cannot divide by zero";calculatorResult.innerHTML="Result: "+r}
+function calculateDiscount(){let p=parseFloat(originalPrice.value),d=parseFloat(discountPercent.value);if(isNaN(p)||isNaN(d))return discountResult.innerHTML="Enter valid values.";let s=p*d/100;discountResult.innerHTML="You Save: "+s.toFixed(2)+"<br>Final Price: "+(p-s).toFixed(2)}
+function calculateProfit(){let c=parseFloat(costPrice.value),s=parseFloat(sellingPrice.value);if(isNaN(c)||isNaN(s)||c<=0)return profitResult.innerHTML="Enter valid values.";let p=s-c;profitResult.innerHTML="Profit: "+p.toFixed(2)+"<br>Profit Percentage: "+(p/c*100).toFixed(2)+"%"}
+function calculateLoan(){let p=parseFloat(loanAmount.value),a=parseFloat(loanRate.value),y=parseFloat(loanYears.value);if(isNaN(p)||isNaN(a)||isNaN(y)||p<=0||y<=0)return loanResult.innerHTML="Enter valid values.";let r=a/100/12,n=y*12,e=r===0?p/n:p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);loanResult.innerHTML="Monthly Payment: "+e.toFixed(2)+"<br>Total Payment: "+(e*n).toFixed(2)}
 function wordCount(){let t=text.value.trim(),w=t?t.split(/\s+/).length:0;wordResult.innerHTML="Words: "+w+" | Characters: "+t.length}
-
-function convertCase(type){
-let t=caseText.value;
-if(!t)return caseResult.innerHTML="Please enter some text.";
-if(type==="upper")t=t.toUpperCase();
-if(type==="lower")t=t.toLowerCase();
-if(type==="title")t=t.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
-caseResult.innerText=t;
-}
-function toUpper(){convertCase("upper")}
-function toLower(){convertCase("lower")}
-function toTitle(){convertCase("title")}
-
-function generatePassword(){
-let c="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*",p="";
-for(let i=0;i<12;i++)p+=c.charAt(Math.floor(Math.random()*c.length));
-passwordResult.innerHTML=p;
-}
-
-function convertUnit(){
-let v=parseFloat(unitValue.value),t=unitType.value;
-if(isNaN(v))return unitResult.innerHTML="Enter a valid value.";
-let r=t==="kmToMiles"?(v*.621371).toFixed(3)+" miles":t==="milesToKm"?(v*1.60934).toFixed(3)+" km":t==="kgToPounds"?(v*2.20462).toFixed(3)+" pounds":(v*.453592).toFixed(3)+" kg";
-unitResult.innerHTML="Result: "+r;
-}
-
-function calculateDateDiff(){
-let a=date1.value,b=date2.value;
-if(!a||!b)return dateDiffResult.innerHTML="Please select both dates.";
-dateDiffResult.innerHTML="Difference: "+Math.ceil(Math.abs(new Date(b)-new Date(a))/86400000)+" days";
-}
-
-function generateRandom(){
-let a=parseInt(min.value),b=parseInt(max.value);
-if(isNaN(a)||isNaN(b)||a>b)return randomResult.innerHTML="Enter a valid minimum and maximum.";
-randomResult.innerHTML="Random Number: "+(Math.floor(Math.random()*(b-a+1))+a);
-}
-
-function searchTools(){
-let s=search.value.toLowerCase();
-document.querySelectorAll(".card").forEach(c=>c.style.display=c.innerText.toLowerCase().includes(s)?"block":"none");
-}
+function characterCount(){let t=charText.value;characterResult.innerHTML="Characters: "+t.length}
+function convertCase(type){let t=caseText.value;if(!t)return caseResult.innerHTML="Please enter some text.";if(type==="upper")t=t.toUpperCase();if(type==="lower")t=t.toLowerCase();if(type==="title")t=t.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());caseResult.innerText=t}
+function generatePassword(){let c="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*",p="";for(let i=0;i<12;i++)p+=c.charAt(Math.floor(Math.random()*c.length));passwordResult.innerHTML=p}
+function convertUnit(){let v=parseFloat(unitValue.value),t=unitType.value;if(isNaN(v))return unitResult.innerHTML="Enter a valid value.";let r=t==="kmToMiles"?(v*.621371).toFixed(3)+" miles":t==="milesToKm"?(v*1.60934).toFixed(3)+" km":t==="kgToPounds"?(v*2.20462).toFixed(3)+" pounds":(v*.453592).toFixed(3)+" kg";unitResult.innerHTML="Result: "+r}
+function convertTemperature(){let v=parseFloat(tempValue.value),t=tempType.value;if(isNaN(v))return tempResult.innerHTML="Enter a valid temperature.";let r=t==="cToF"?(v*9/5+32).toFixed(2)+" °F":((v-32)*5/9).toFixed(2)+" °C";tempResult.innerHTML="Result: "+r}
+function convertLength(){let v=parseFloat(lengthValue.value),t=lengthType.value;if(isNaN(v))return lengthResult.innerHTML="Enter a valid value.";let r=t==="mToFt"?(v*3.28084).toFixed(3)+" feet":t==="ftToM"?(v/3.28084).toFixed(3)+" meters":t==="cmToIn"?(v/2.54).toFixed(3)+" inches":(v*2.54).toFixed(3)+" cm";lengthResult.innerHTML="Result: "+r}
+function calculateDateDiff(){let a=date1.value,b=date2.value;if(!a||!b)return dateDiffResult.innerHTML="Please select both dates.";dateDiffResult.innerHTML="Difference: "+Math.ceil(Math.abs(new Date(b)-new Date(a))/86400000)+" days"}
+let countdownInterval;
+function startCountdown(){clearInterval(countdownInterval);let target=new Date(countdownDate.value).getTime();if(!target)return countdownResult.innerHTML="Please select a future date.";function update(){let d=target-Date.now();if(d<=0){clearInterval(countdownInterval);return countdownResult.innerHTML="🎉 Countdown Finished!";}let days=Math.floor(d/86400000),hrs=Math.floor(d%86400000/3600000),mins=Math.floor(d%3600000/60000),secs=Math.floor(d%60000/1000);countdownResult.innerHTML=days+" Days "+hrs+" Hours "+mins+" Minutes "+secs+" Seconds"}update();countdownInterval=setInterval(update,1000)}
+function generateRandom(){let a=parseInt(min.value),b=parseInt(max.value);if(isNaN(a)||isNaN(b)||a>b)return randomResult.innerHTML="Enter a valid minimum and maximum.";randomResult.innerHTML="Random Number: "+(Math.floor(Math.random()*(b-a+1))+a)}
+function searchTools(){let s=search.value.toLowerCase();document.querySelectorAll(".card").forEach(c=>c.style.display=c.innerText.toLowerCase().includes(s)?"block":"none")}
 </script>
-
 </body>
 </html>
