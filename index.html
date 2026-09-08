@@ -1,199 +1,534 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QuickToolHub - Free Online Tools</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuickToolHub - Free Online Tools</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
-    body {
-      background: #f5f7fb;
-      color: #222;
-    }
+body {
+  margin: 0;
+  background: #f5f7fb;
+  color: #222;
+}
 
-    header {
-      background: #2563eb;
-      color: white;
-      padding: 20px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+header {
+  background: #2563eb;
+  color: white;
+  padding: 20px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
 
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-      background: white;
-    }
+.hero {
+  text-align: center;
+  padding: 70px 20px;
+  background: white;
+}
 
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 15px;
-    }
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
 
-    .hero p {
-      font-size: 18px;
-      color: #666;
-      margin-bottom: 25px;
-    }
+.hero p {
+  color: #666;
+  font-size: 18px;
+}
 
-    .search-box {
-      max-width: 600px;
-      margin: auto;
-    }
+.search {
+  width: 90%;
+  max-width: 600px;
+  padding: 15px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
 
-    .search-box input {
-      width: 100%;
-      padding: 16px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-    }
+.tools {
+  padding: 50px 8%;
+}
 
-    .tools-section {
-      padding: 50px 8%;
-    }
+.tools h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
 
-    .tools-section h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 30px;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
 
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .tool-card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      transition: 0.3s;
-      cursor: pointer;
-    }
+.card:hover {
+  transform: translateY(-5px);
+}
 
-    .tool-card:hover {
-      transform: translateY(-5px);
-    }
+.card p {
+  color: #666;
+}
 
-    .tool-card h3 {
-      margin-bottom: 10px;
-    }
+.tool {
+  display: none;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
+}
 
-    .tool-card p {
-      color: #666;
-      font-size: 14px;
-    }
+.tool input,
+.tool textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
 
-    footer {
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-    }
+.tool textarea {
+  height: 150px;
+}
 
-    @media(max-width: 600px) {
-      header {
-        padding: 15px 5%;
-      }
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 8px;
+}
 
-      nav {
-        display: none;
-      }
+.back {
+  background: #555;
+}
 
-      .hero h1 {
-        font-size: 30px;
-      }
-    }
-  </style>
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  background: #eef4ff;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+footer {
+  background: #111827;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+</style>
 </head>
 
 <body>
 
 <header>
   <div class="logo">QuickToolHub</div>
-
   <nav>
-    <a href="#">Home</a>
+    <a href="#" onclick="home()">Home</a>
     <a href="#tools">Tools</a>
-    <a href="#">About</a>
   </nav>
 </header>
+
+<div id="homePage">
 
 <section class="hero">
   <h1>Free Online Tools</h1>
   <p>Fast, simple and free tools for everyone.</p>
 
-  <div class="search-box">
-    <input type="text" placeholder="Search for a tool...">
-  </div>
+  <input
+    class="search"
+    id="search"
+    type="text"
+    placeholder="Search for a tool..."
+    onkeyup="searchTools()">
 </section>
 
-<section class="tools-section" id="tools">
+<section class="tools" id="tools">
 
-  <h2>Popular Tools</h2>
+<h2>Popular Tools</h2>
 
-  <div class="tools-grid">
+<div class="grid">
 
-    <div class="tool-card">
-      <h3>🎂 Age Calculator</h3>
-      <p>Calculate your exact age easily.</p>
-    </div>
+<div class="card" onclick="openTool('age')">
+  <h3>🎂 Age Calculator</h3>
+  <p>Calculate your age.</p>
+</div>
 
-    <div class="tool-card">
-      <h3>📊 Percentage Calculator</h3>
-      <p>Calculate percentages quickly.</p>
-    </div>
+<div class="card" onclick="openTool('percentage')">
+  <h3>📊 Percentage Calculator</h3>
+  <p>Calculate percentage.</p>
+</div>
 
-    <div class="tool-card">
-      <h3>🎓 CGPA Calculator</h3>
-      <p>Calculate your CGPA easily.</p>
-    </div>
+<div class="card" onclick="openTool('cgpa')">
+  <h3>🎓 CGPA Calculator</h3>
+  <p>Calculate your CGPA.</p>
+</div>
 
-    <div class="tool-card">
-      <h3>⚖️ BMI Calculator</h3>
-      <p>Check your Body Mass Index.</p>
-    </div>
+<div class="card" onclick="openTool('bmi')">
+  <h3>⚖️ BMI Calculator</h3>
+  <p>Calculate your BMI.</p>
+</div>
 
-    <div class="tool-card">
-      <h3>📝 Word Counter</h3>
-      <p>Count words and characters.</p>
-    </div>
+<div class="card" onclick="openTool('words')">
+  <h3>📝 Word Counter</h3>
+  <p>Count words and characters.</p>
+</div>
 
-    <div class="tool-card">
-      <h3>🔐 Password Generator</h3>
-      <p>Create strong secure passwords.</p>
-    </div>
+<div class="card" onclick="openTool('password')">
+  <h3>🔐 Password Generator</h3>
+  <p>Generate a strong password.</p>
+</div>
 
-  </div>
+</div>
 </section>
+
+</div>
+
+
+<!-- AGE CALCULATOR -->
+
+<div class="tool" id="age">
+
+<h2>🎂 Age Calculator</h2>
+
+<input type="date" id="birth">
+
+<button onclick="calculateAge()">Calculate Age</button>
+
+<div class="result" id="ageResult"></div>
+
+<button class="back" onclick="home()">← Back</button>
+
+</div>
+
+
+<!-- PERCENTAGE CALCULATOR -->
+
+<div class="tool" id="percentage">
+
+<h2>📊 Percentage Calculator</h2>
+
+<input type="number" id="obtained" placeholder="Obtained Marks">
+
+<input type="number" id="total" placeholder="Total Marks">
+
+<button onclick="calculatePercentage()">Calculate</button>
+
+<div class="result" id="percentageResult"></div>
+
+<button class="back" onclick="home()">← Back</button>
+
+</div>
+
+
+<!-- CGPA CALCULATOR -->
+
+<div class="tool" id="cgpa">
+
+<h2>🎓 CGPA Calculator</h2>
+
+<input type="number" id="cgpaInput" placeholder="Enter CGPA" step="0.01">
+
+<input type="number" id="cgpaScale" placeholder="Scale e.g. 4">
+
+<button onclick="calculateCGPA()">Calculate Percentage</button>
+
+<div class="result" id="cgpaResult"></div>
+
+<button class="back" onclick="home()">← Back</button>
+
+</div>
+
+
+<!-- BMI CALCULATOR -->
+
+<div class="tool" id="bmi">
+
+<h2>⚖️ BMI Calculator</h2>
+
+<input type="number" id="weight" placeholder="Weight (KG)">
+
+<input type="number" id="height" placeholder="Height (CM)">
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+<div class="result" id="bmiResult"></div>
+
+<button class="back" onclick="home()">← Back</button>
+
+</div>
+
+
+<!-- WORD COUNTER -->
+
+<div class="tool" id="words">
+
+<h2>📝 Word Counter</h2>
+
+<textarea
+id="text"
+placeholder="Write or paste your text..."
+oninput="wordCount()"></textarea>
+
+<div class="result" id="wordResult">
+Words: 0 | Characters: 0
+</div>
+
+<button class="back" onclick="home()">← Back</button>
+
+</div>
+
+
+<!-- PASSWORD GENERATOR -->
+
+<div class="tool" id="password">
+
+<h2>🔐 Password Generator</h2>
+
+<button onclick="generatePassword()">
+Generate Password
+</button>
+
+<div class="result" id="passwordResult"></div>
+
+<button class="back" onclick="home()">← Back</button>
+
+</div>
+
 
 <footer>
-  <p>© 2026 QuickToolHub | Free Online Tools</p>
+<p>© 2026 QuickToolHub | Free Online Tools</p>
 </footer>
+
+
+<script>
+
+function openTool(id) {
+
+  document.getElementById("homePage").style.display = "none";
+
+  document.querySelectorAll(".tool").forEach(function(tool) {
+    tool.style.display = "none";
+  });
+
+  document.getElementById(id).style.display = "block";
+
+  window.scrollTo(0,0);
+}
+
+
+function home() {
+
+  document.getElementById("homePage").style.display = "block";
+
+  document.querySelectorAll(".tool").forEach(function(tool) {
+    tool.style.display = "none";
+  });
+
+  window.scrollTo(0,0);
+}
+
+
+function calculateAge() {
+
+  let birth = new Date(document.getElementById("birth").value);
+
+  if (!document.getElementById("birth").value) {
+    document.getElementById("ageResult").innerHTML =
+    "Please select your date of birth.";
+    return;
+  }
+
+  let today = new Date();
+
+  let age = today.getFullYear() - birth.getFullYear();
+
+  let month = today.getMonth() - birth.getMonth();
+
+  if (
+    month < 0 ||
+    (month === 0 && today.getDate() < birth.getDate())
+  ) {
+    age--;
+  }
+
+  document.getElementById("ageResult").innerHTML =
+  "Your age is " + age + " years.";
+}
+
+
+function calculatePercentage() {
+
+  let obtained =
+  parseFloat(document.getElementById("obtained").value);
+
+  let total =
+  parseFloat(document.getElementById("total").value);
+
+  if (!total) {
+    document.getElementById("percentageResult").innerHTML =
+    "Please enter valid marks.";
+    return;
+  }
+
+  let percentage = (obtained / total) * 100;
+
+  document.getElementById("percentageResult").innerHTML =
+  "Your Percentage: " + percentage.toFixed(2) + "%";
+}
+
+
+function calculateCGPA() {
+
+  let cgpa =
+  parseFloat(document.getElementById("cgpaInput").value);
+
+  let scale =
+  parseFloat(document.getElementById("cgpaScale").value);
+
+  if (!cgpa || !scale) {
+    document.getElementById("cgpaResult").innerHTML =
+    "Please enter CGPA and scale.";
+    return;
+  }
+
+  let percentage = (cgpa / scale) * 100;
+
+  document.getElementById("cgpaResult").innerHTML =
+  "Approximate Percentage: " + percentage.toFixed(2) + "%";
+}
+
+
+function calculateBMI() {
+
+  let weight =
+  parseFloat(document.getElementById("weight").value);
+
+  let height =
+  parseFloat(document.getElementById("height").value) / 100;
+
+  if (!weight || !height) {
+    document.getElementById("bmiResult").innerHTML =
+    "Please enter weight and height.";
+    return;
+  }
+
+  let bmi = weight / (height * height);
+
+  let category;
+
+  if (bmi < 18.5) {
+    category = "Underweight";
+  }
+  else if (bmi < 25) {
+    category = "Normal";
+  }
+  else if (bmi < 30) {
+    category = "Overweight";
+  }
+  else {
+    category = "Obese";
+  }
+
+  document.getElementById("bmiResult").innerHTML =
+  "BMI: " + bmi.toFixed(1) + " (" + category + ")";
+}
+
+
+function wordCount() {
+
+  let text =
+  document.getElementById("text").value.trim();
+
+  let words = text ? text.split(/\s+/).length : 0;
+
+  let characters = text.length;
+
+  document.getElementById("wordResult").innerHTML =
+  "Words: " + words +
+  " | Characters: " + characters;
+}
+
+
+function generatePassword() {
+
+  let characters =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+  let password = "";
+
+  for (let i = 0; i < 12; i++) {
+
+    password += characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+
+  }
+
+  document.getElementById("passwordResult").innerHTML =
+  password;
+}
+
+
+function searchTools() {
+
+  let search =
+  document.getElementById("search").value.toLowerCase();
+
+  let cards =
+  document.querySelectorAll(".card");
+
+  cards.forEach(function(card) {
+
+    let text =
+    card.innerText.toLowerCase();
+
+    if (text.includes(search)) {
+      card.style.display = "block";
+    }
+    else {
+      card.style.display = "none";
+    }
+
+  });
+
+}
+
+</script>
 
 </body>
 </html>
