@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - QuickToolHub</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial,sans-serif}
+body{margin:0;background:#f6f8fc;color:#1f2937}
+header{background:linear-gradient(135deg,#2563eb,#4f46e5);color:white;padding:18px 8%;text-align:center}
+.logo{font-size:25px;font-weight:bold}
+.logo span{color:#bfdbfe}
+main{max-width:700px;margin:50px auto;padding:35px 25px;background:white;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+h1{text-align:center;color:#2563eb}
+p{text-align:center;color:#6b7280;line-height:1.6}
+label{display:block;margin-top:18px;font-weight:bold}
+input,textarea{width:100%;padding:14px;margin-top:8px;border:1px solid #d1d5db;border-radius:10px;font-size:16px}
+textarea{height:150px;resize:vertical}
+button{background:#2563eb;color:white;border:none;padding:13px 25px;border-radius:10px;cursor:pointer;font-size:16px;margin-top:20px}
+button:hover{background:#1d4ed8}
+.back{display:block;text-align:center;margin-top:25px;color:#2563eb;text-decoration:none;font-weight:bold}
+footer{text-align:center;background:#111827;color:#d1d5db;padding:30px 20px;margin-top:60px}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Quick<span>ToolHub</span></div>
+</header>
+
+<main>
+
+<h1>Contact Us</h1>
+
+<p>
+Have a question, suggestion or feedback? We'd love to hear from you.
+</p>
+
+<form onsubmit="sendMessage(event)">
+
+<label>Your Name</label>
+<input type="text" id="name" placeholder="Enter your name" required>
+
+<label>Your Email</label>
+<input type="email" id="email" placeholder="Enter your email" required>
+
+<label>Your Message</label>
+<textarea id="message" placeholder="Write your message..." required></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+<div id="result" style="margin-top:20px;text-align:center;font-weight:bold;"></div>
+
+<a class="back" href="index.html">← Back to Home</a>
+
+</main>
+
+<footer>
+<p>QuickToolHub - Fast, simple and free online tools.</p>
+<p>© 2026 QuickToolHub. All rights reserved.</p>
+</footer>
+
+<script>
+function sendMessage(event){
+event.preventDefault();
+document.getElementById("result").innerHTML =
+"Thank you! Your message has been received.";
+}
+</script>
+
+</body>
+</html>
