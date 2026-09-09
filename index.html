@@ -396,7 +396,66 @@ The calculator provides a simple average based on the values entered. If your in
 </div>
 
 <!-- BMI -->
-<div class="tool" id="bmi"><h2>⚖️ BMI Calculator</h2><input type="number" id="weight" placeholder="Weight (KG)"><input type="number" id="height" placeholder="Height (CM)"><button onclick="calculateBMI()">Calculate BMI</button><div class="result" id="bmiResult"></div><button class="back" onclick="home()">← Back</button></div>
+<div class="tool" id="bmi">
+
+<h2>⚖️ BMI Calculator</h2>
+
+<input type="number" id="weight" placeholder="Weight (KG)">
+<input type="number" id="height" placeholder="Height (CM)">
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+<div class="result" id="bmiResult"></div>
+
+<button class="back" onclick="home()">← Back</button>
+
+<div style="margin-top:35px;line-height:1.7;color:#4b5563;">
+
+<h2 style="color:#111827;">About BMI Calculator</h2>
+
+<p>
+Our BMI Calculator is a free online tool that helps you calculate your Body Mass Index using your weight and height. BMI can provide a simple indication of whether your weight is within a general healthy range.
+</p>
+
+<h2 style="color:#111827;">How to Use the BMI Calculator</h2>
+
+<p>
+1. Enter your weight in kilograms (KG).<br>
+2. Enter your height in centimeters (CM).<br>
+3. Click the "Calculate BMI" button.<br>
+4. Your BMI result will be displayed instantly.
+</p>
+
+<h2 style="color:#111827;">How BMI is Calculated</h2>
+
+<p>
+BMI is calculated by dividing your weight in kilograms by the square of your height in meters.
+</p>
+
+<p>
+<strong>Formula:</strong> BMI = Weight (KG) ÷ Height² (meters)
+</p>
+
+<h2 style="color:#111827;">Frequently Asked Questions</h2>
+
+<h3>Is this BMI Calculator free?</h3>
+<p>
+Yes. QuickToolHub's BMI Calculator is completely free to use.
+</p>
+
+<h3>Is BMI suitable for everyone?</h3>
+<p>
+BMI is a general screening measure and may not accurately represent body composition for every person, such as athletes with high muscle mass.
+</p>
+
+<h3>Do I need to install anything?</h3>
+<p>
+No. The BMI Calculator works directly in your web browser.
+</p>
+
+</div>
+
+</div>
 
 <!-- SIMPLE CALCULATOR -->
 <div class="tool" id="calculator"><h2>🔢 Simple Calculator</h2><input type="number" id="num1" placeholder="First Number"><select id="operation"><option value="+">Addition (+)</option><option value="-">Subtraction (-)</option><option value="*">Multiplication (×)</option><option value="/">Division (÷)</option></select><input type="number" id="num2" placeholder="Second Number"><button onclick="simpleCalculate()">Calculate</button><div class="result" id="calculatorResult"></div><button class="back" onclick="home()">← Back</button></div>
