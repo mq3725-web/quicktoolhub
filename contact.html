@@ -6,21 +6,88 @@
 <title>Contact Us - QuickToolHub</title>
 
 <style>
-*{box-sizing:border-box;font-family:Arial,sans-serif}
-body{margin:0;background:#f6f8fc;color:#1f2937}
-header{background:linear-gradient(135deg,#2563eb,#4f46e5);color:white;padding:18px 8%;text-align:center}
-.logo{font-size:25px;font-weight:bold}
-.logo span{color:#bfdbfe}
-main{max-width:700px;margin:50px auto;padding:35px 25px;background:white;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.08)}
-h1{text-align:center;color:#2563eb}
-p{text-align:center;color:#6b7280;line-height:1.6}
-label{display:block;margin-top:18px;font-weight:bold}
-input,textarea{width:100%;padding:14px;margin-top:8px;border:1px solid #d1d5db;border-radius:10px;font-size:16px}
-textarea{height:150px;resize:vertical}
-button{background:#2563eb;color:white;border:none;padding:13px 25px;border-radius:10px;cursor:pointer;font-size:16px;margin-top:20px}
-button:hover{background:#1d4ed8}
-.back{display:block;text-align:center;margin-top:25px;color:#2563eb;text-decoration:none;font-weight:bold}
-footer{text-align:center;background:#111827;color:#d1d5db;padding:30px 20px;margin-top:60px}
+*{
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+margin:0;
+background:#f6f8fc;
+color:#1f2937;
+}
+
+header{
+background:linear-gradient(135deg,#2563eb,#4f46e5);
+color:white;
+padding:18px 8%;
+text-align:center;
+}
+
+.logo{
+font-size:25px;
+font-weight:bold;
+}
+
+.logo span{
+color:#bfdbfe;
+}
+
+main{
+max-width:700px;
+margin:50px auto;
+padding:35px 25px;
+background:white;
+border-radius:18px;
+box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+}
+
+p{
+text-align:center;
+color:#6b7280;
+line-height:1.6;
+}
+
+.contact-box{
+text-align:center;
+margin:30px 0;
+padding:25px;
+background:#f3f6ff;
+border-radius:12px;
+}
+
+.contact-box a{
+color:#2563eb;
+font-size:18px;
+font-weight:bold;
+text-decoration:none;
+}
+
+.back{
+display:block;
+text-align:center;
+margin-top:25px;
+color:#2563eb;
+text-decoration:none;
+font-weight:bold;
+}
+
+footer{
+text-align:center;
+background:#111827;
+color:#d1d5db;
+padding:30px 20px;
+margin-top:60px;
+}
+
+footer p{
+color:#d1d5db;
+}
 </style>
 </head>
 
@@ -35,42 +102,34 @@ footer{text-align:center;background:#111827;color:#d1d5db;padding:30px 20px;marg
 <h1>Contact Us</h1>
 
 <p>
-Have a question, suggestion or feedback? We'd love to hear from you.
+Have a question, suggestion or feedback?
+We'd love to hear from you.
 </p>
 
-<form onsubmit="sendMessage(event)">
+<div class="contact-box">
 
-<label>Your Name</label>
-<input type="text" id="name" placeholder="Enter your name" required>
+<p>You can contact us directly by email:</p>
 
-<label>Your Email</label>
-<input type="email" id="email" placeholder="Enter your email" required>
+<a href="mailto:mq3725@gmail.com">
+mq3725@gmail.com
+</a>
 
-<label>Your Message</label>
-<textarea id="message" placeholder="Write your message..." required></textarea>
+<p>
+We will try to respond as soon as possible.
+</p>
 
-<button type="submit">Send Message</button>
-
-</form>
-
-<div id="result" style="margin-top:20px;text-align:center;font-weight:bold;"></div>
+</div>
 
 <a class="back" href="index.html">← Back to Home</a>
 
 </main>
 
 <footer>
+
 <p>QuickToolHub - Fast, simple and free online tools.</p>
 <p>© 2026 QuickToolHub. All rights reserved.</p>
-</footer>
 
-<script>
-function sendMessage(event){
-event.preventDefault();
-document.getElementById("result").innerHTML =
-"Thank you! Your message has been received.";
-}
-</script>
+</footer>
 
 </body>
 </html>
