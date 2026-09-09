@@ -1009,8 +1009,67 @@ The result is calculated instantly when you click the Convert button.
 </div>
 
 <!-- TEMPERATURE -->
-<div class="tool" id="temperature"><h2>🌡️ Temperature Converter</h2><input type="number" id="tempValue" placeholder="Enter Temperature"><select id="tempType"><option value="cToF">Celsius → Fahrenheit</option><option value="fToC">Fahrenheit → Celsius</option></select><button onclick="convertTemperature()">Convert</button><div class="result" id="tempResult"></div><button class="back" onclick="home()">← Back</button></div>
+<div class="tool" id="temperature">
 
+<h2>🌡️ Temperature Converter</h2>
+
+<input type="number" id="tempValue" placeholder="Enter Temperature">
+
+<select id="tempType">
+<option value="cToF">Celsius → Fahrenheit</option>
+<option value="fToC">Fahrenheit → Celsius</option>
+</select>
+
+<button onclick="convertTemperature()">Convert</button>
+
+<div class="result" id="tempResult"></div>
+
+<button class="back" onclick="home()">← Back</button>
+
+<div style="margin-top:35px;line-height:1.7;color:#4b5563;">
+
+<h2 style="color:#111827;">About Temperature Converter</h2>
+
+<p>
+Our Temperature Converter is a free online tool that quickly converts temperatures between Celsius and Fahrenheit. It is useful for students, travelers, cooking, weather calculations, and everyday use.
+</p>
+
+<h2 style="color:#111827;">How to Use the Temperature Converter</h2>
+
+<p>
+1. Enter the temperature you want to convert.<br>
+2. Select Celsius to Fahrenheit or Fahrenheit to Celsius.<br>
+3. Click the "Convert" button.<br>
+4. Your converted temperature will appear below.
+</p>
+
+<h2 style="color:#111827;">Temperature Formulas</h2>
+
+<p>
+<strong>Celsius to Fahrenheit:</strong> (°C × 9/5) + 32<br>
+<strong>Fahrenheit to Celsius:</strong> (°F − 32) × 5/9
+</p>
+
+<h2 style="color:#111827;">Frequently Asked Questions</h2>
+
+<h3>Is this Temperature Converter free?</h3>
+<p>
+Yes. QuickToolHub's Temperature Converter is completely free to use.
+</p>
+
+<h3>Can I convert negative temperatures?</h3>
+<p>
+Yes. The converter can be used for both positive and negative temperatures.
+</p>
+
+<h3>Do I need to install anything?</h3>
+<p>
+No. The tool works directly in your web browser.
+</p>
+
+</div>
+
+</div>
 <!-- LENGTH -->
 <div class="tool" id="length"><h2>📏 Length Converter</h2><input type="number" id="lengthValue" placeholder="Enter Value"><select id="lengthType"><option value="mToFt">Meters → Feet</option><option value="ftToM">Feet → Meters</option><option value="cmToIn">Centimeters → Inches</option><option value="inToCm">Inches → Centimeters</option></select><button onclick="convertLength()">Convert</button><div class="result" id="lengthResult"></div><button class="back" onclick="home()">← Back</button></div>
 
