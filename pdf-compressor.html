@@ -1,206 +1,167 @@
-* {
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #222;
-}
+  <title>PDF Compressor - Compress PDF Online Free | QuickToolHub</title>
 
-.container {
-  max-width: 750px;
-  margin: 40px auto;
-  padding: 20px;
-}
+  <meta name="description" content="Compress PDF files online for free. Reduce PDF file size quickly and easily with QuickToolHub.">
 
-.tool-box {
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-}
+  <link rel="stylesheet" href="pdf-compressor.css">
+</head>
 
-h1 {
-  text-align: center;
-  margin-bottom: 10px;
-}
+<body>
 
-.description {
-  text-align: center;
-  color: #666;
-  margin-bottom: 25px;
-}
+  <div class="container">
 
-.upload-area {
-  border: 2px dashed #aaa;
-  border-radius: 12px;
-  padding: 35px 20px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.2s;
-}
+    <div class="tool-box">
 
-.upload-area:hover {
-  border-color: #333;
-  background: #fafafa;
-}
+      <h1>PDF Compressor</h1>
 
-.upload-area p {
-  margin: 8px 0;
-}
+      <p class="description">
+        Compress your PDF file and reduce its size online for free.
+      </p>
 
-#pdfFile {
-  display: none;
-}
+      <div class="upload-area" id="uploadArea">
 
-.file-name {
-  margin-top: 15px;
-  font-weight: bold;
-  color: #444;
-  word-break: break-word;
-}
+        <p>📄 Click here to select a PDF</p>
 
-.settings {
-  margin-top: 25px;
-}
+        <p>or choose a PDF file from your device</p>
 
-.settings label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
+        <input
+          type="file"
+          id="pdfFile"
+          accept="application/pdf"
+        >
 
-select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-  background: white;
-}
+        <div class="file-name" id="fileName"></div>
 
-.buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-  flex-wrap: wrap;
-}
+      </div>
 
-button {
-  flex: 1;
-  min-width: 150px;
-  padding: 13px 18px;
-  border: none;
-  border-radius: 8px;
-  background: #222;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
+      <div class="settings">
 
-button:hover {
-  opacity: 0.85;
-}
+        <label for="compressionLevel">
+          Compression Level
+        </label>
 
-button:disabled {
-  background: #aaa;
-  cursor: not-allowed;
-}
+        <select id="compressionLevel">
 
-.clear-btn {
-  background: #777;
-}
+          <option value="low">
+            Low Compression - Better Quality
+          </option>
 
-.progress-box {
-  display: none;
-  margin-top: 25px;
-}
+          <option value="medium" selected>
+            Medium Compression - Recommended
+          </option>
 
-.progress-bar {
-  width: 100%;
-  height: 12px;
-  background: #eee;
-  border-radius: 10px;
-  overflow: hidden;
-}
+          <option value="high">
+            High Compression - Smaller File
+          </option>
 
-.progress {
-  width: 0%;
-  height: 100%;
-  background: #333;
-  transition: width 0.3s;
-}
+        </select>
 
-.status {
-  text-align: center;
-  margin-top: 10px;
-  color: #555;
-}
+      </div>
 
-.result {
-  display: none;
-  margin-top: 25px;
-  padding: 20px;
-  background: #f7f7f7;
-  border-radius: 10px;
-  text-align: center;
-}
+      <div class="buttons">
 
-.result p {
-  margin: 8px 0;
-}
+        <button id="compressBtn" disabled>
+          Compress PDF
+        </button>
 
-.download-btn {
-  display: inline-block;
-  margin-top: 15px;
-  text-decoration: none;
-  background: #222;
-  color: white;
-  padding: 13px 20px;
-  border-radius: 8px;
-}
+        <button id="clearBtn" class="clear-btn">
+          Clear
+        </button>
 
-.info {
-  margin-top: 30px;
-  line-height: 1.7;
-  color: #555;
-}
+      </div>
 
-.info h2 {
-  color: #222;
-  font-size: 22px;
-}
+      <div class="progress-box" id="progressBox">
 
-.faq {
-  margin-top: 25px;
-}
+        <div class="progress-bar">
 
-.faq h3 {
-  color: #222;
-  margin-bottom: 5px;
-}
+          <div class="progress" id="progress"></div>
 
-@media (max-width: 600px) {
-  .container {
-    margin: 20px auto;
-    padding: 10px;
-  }
+        </div>
 
-  .tool-box {
-    padding: 20px;
-  }
+        <p class="status" id="statusText"></p>
 
-  h1 {
-    font-size: 27px;
-  }
+      </div>
 
-  .buttons {
-    flex-direction: column;
-  }
+      <div class="result" id="result">
 
-  button {
-    width: 100%;
-  }
-}
+        <h2>Compression Complete!</h2>
+
+        <p>
+          Original Size:
+          <strong id="originalSize"></strong>
+        </p>
+
+        <p>
+          Compressed Size:
+          <strong id="compressedSize"></strong>
+        </p>
+
+        <a
+          id="downloadBtn"
+          class="download-btn"
+          href="#"
+          download
+        >
+          Download Compressed PDF
+        </a>
+
+      </div>
+
+      <div class="info">
+
+        <h2>Free PDF Compressor</h2>
+
+        <p>
+          QuickToolHub PDF Compressor helps you reduce the size of PDF
+          documents quickly. Select your PDF, choose a compression level,
+          and download the compressed file.
+        </p>
+
+        <div class="faq">
+
+          <h3>Is this PDF Compressor free?</h3>
+
+          <p>
+            Yes. You can use this PDF compressor for free.
+          </p>
+
+          <h3>Can I compress a large PDF?</h3>
+
+          <p>
+            You can try compressing most PDF files directly in your browser.
+            Very large files may take longer to process.
+          </p>
+
+          <h3>Which compression level should I choose?</h3>
+
+          <p>
+            Medium compression is recommended for a good balance between
+            file size and quality.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+  <!-- Your JavaScript -->
+  <script src="pdf-compressor.js"></script>
+
+</body>
+</html>
