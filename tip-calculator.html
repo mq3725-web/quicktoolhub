@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tip Calculator - Free Online Tip Calculator | QuickToolHub</title>
+
+<meta name="description" content="Free online Tip Calculator. Calculate tip amount and total bill instantly. Easy and fast calculator for restaurants and everyday use.">
+
+<link rel="canonical" href="https://mq3725-web.github.io/quicktoolhub/tip-calculator.html">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+margin:0;
+padding:20px;
+color:#111827;
+}
+
+.container{
+max-width:600px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+box-sizing:border-box;
+border:1px solid #d1d5db;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:20px;
+padding:15px;
+background:#f3f4f6;
+border-radius:8px;
+font-size:18px;
+line-height:1.8;
+}
+
+.back{
+background:#6b7280;
+}
+
+.info{
+margin-top:35px;
+line-height:1.7;
+color:#4b5563;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💰 Tip Calculator</h1>
+
+<input type="number" id="bill" placeholder="Enter Bill Amount">
+
+<input type="number" id="tip" placeholder="Enter Tip Percentage">
+
+<input type="number" id="people" placeholder="Number of People" value="1">
+
+<button onclick="calculateTip()">Calculate Tip</button>
+
+<div class="result" id="result"></div>
+
+<button class="back" onclick="window.location.href='index.html'">
+← Back to Home
+</button>
+
+<div class="info">
+
+<h2>About Tip Calculator</h2>
+
+<p>
+Our free Tip Calculator helps you quickly calculate the tip amount and total bill. It is useful for restaurants, cafes, hotels, and everyday expenses.
+</p>
+
+<h2>How to Use</h2>
+
+<p>
+1. Enter your total bill amount.<br>
+2. Enter the tip percentage.<br>
+3. Enter the number of people sharing the bill.<br>
+4. Click Calculate Tip.
+</p>
+
+<h2>Tip Calculator Formula</h2>
+
+<p>
+Tip Amount = Bill × Tip Percentage ÷ 100
+</p>
+
+<p>
+Total Bill = Bill + Tip Amount
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this Tip Calculator free?</h3>
+<p>Yes, it is completely free to use.</p>
+
+<h3>Can I split the bill between people?</h3>
+<p>Yes. Enter the number of people and the calculator will show the amount per person.</p>
+
+</div>
+
+</div>
+
+<script>
+function calculateTip(){
+
+let bill = parseFloat(document.getElementById("bill").value);
+let tip = parseFloat(document.getElementById("tip").value);
+let people = parseInt(document.getElementById("people").value);
+
+if(isNaN(bill) || isNaN(tip) || isNaN(people) || bill < 0 || tip < 0 || people <= 0){
+document.getElementById("result").innerHTML =
+"Please enter valid numbers.";
+return;
+}
+
+let tipAmount = bill * tip / 100;
+let total = bill + tipAmount;
+let perPerson = total / people;
+
+document.getElementById("result").innerHTML =
+"Tip Amount: " + tipAmount.toFixed(2) +
+"<br>Total Bill: " + total.toFixed(2) +
+"<br>Per Person: " + perPerson.toFixed(2);
+
+}
+</script>
+
+</body>
+</html>
