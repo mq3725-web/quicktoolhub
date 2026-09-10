@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Character Counter - Free Online Tool | QuickToolHub</title>
+
+<meta name="description" content="Free online Character Counter. Count characters, letters, numbers and spaces in your text instantly.">
+
+<link rel="canonical" href="https://mq3725-web.github.io/quicktoolhub/character-counter.html">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+margin:0;
+padding:20px;
+color:#111827;
+}
+
+.container{
+max-width:700px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+text-align:center;
+}
+
+textarea{
+width:100%;
+height:220px;
+padding:12px;
+box-sizing:border-box;
+border:1px solid #d1d5db;
+border-radius:8px;
+font-size:16px;
+resize:vertical;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:15px;
+}
+
+.stat{
+background:#f3f4f6;
+padding:15px;
+border-radius:8px;
+text-align:center;
+}
+
+.stat strong{
+display:block;
+font-size:24px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#6b7280;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:15px;
+}
+
+.info{
+margin-top:35px;
+line-height:1.7;
+color:#4b5563;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔠 Character Counter</h1>
+
+<textarea id="text" placeholder="Type or paste your text here..." oninput="countCharacters()"></textarea>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="characters">0</strong>
+Characters
+</div>
+
+<div class="stat">
+<strong id="noSpaces">0</strong>
+Without Spaces
+</div>
+
+<div class="stat">
+<strong id="words">0</strong>
+Words
+</div>
+
+</div>
+
+<button onclick="clearText()">Clear Text</button>
+
+<button onclick="window.location.href='index.html'">
+← Back to Home
+</button>
+
+<div class="info">
+
+<h2>About Character Counter</h2>
+
+<p>
+Our free Character Counter counts characters, characters without spaces, and words instantly. It is useful for students, writers, social media posts, and content creators.
+</p>
+
+<h2>How to Use</h2>
+
+<p>
+1. Type or paste your text into the box.<br>
+2. The character and word counts update automatically.<br>
+3. Use the Clear Text button to start again.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this Character Counter free?</h3>
+<p>Yes, it is completely free to use.</p>
+
+<h3>Does it count spaces?</h3>
+<p>Yes. The Characters count includes spaces, while Without Spaces excludes them.</p>
+
+</div>
+
+</div>
+
+<script>
+
+function countCharacters(){
+
+let text = document.getElementById("text").value;
+
+document.getElementById("characters").textContent = text.length;
+
+document.getElementById("noSpaces").textContent =
+text.replace(/\s/g,"").length;
+
+let words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+
+document.getElementById("words").textContent = words;
+
+}
+
+function clearText(){
+
+document.getElementById("text").value = "";
+
+countCharacters();
+
+}
+
+</script>
+
+</body>
+</html>
