@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>QR Code Generator - Free Online QR Maker | QuickToolHub</title>
+
+  <meta name="description" content="Create QR codes online for free. Generate QR codes for URLs, text, phone numbers and more with QuickToolHub.">
+  <meta name="keywords" content="QR code generator, free QR generator, QR maker, online QR code generator">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #222;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .tool-box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .description {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #333;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      flex: 1;
+      min-width: 130px;
+      padding: 13px 18px;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    .clear-btn {
+      background: #777;
+    }
+
+    .qr-area {
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    #qrcode {
+      display: inline-block;
+      padding: 10px;
+      background: white;
+    }
+
+    #downloadBtn {
+      display: none;
+      margin-top: 20px;
+      width: 100%;
+      background: #333;
+    }
+
+    .info {
+      margin-top: 30px;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    .info h2 {
+      color: #222;
+      font-size: 22px;
+    }
+
+    .faq {
+      margin-top: 25px;
+    }
+
+    .faq h3 {
+      margin-bottom: 5px;
+      color: #222;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px auto;
+        padding: 10px;
+      }
+
+      .tool-box {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="tool-box">
+
+      <h1>QR Code Generator</h1>
+
+      <p class="description">
+        Create a free QR code for any text, website URL, phone number or message.
+      </p>
+
+      <label for="qrText">Enter text or URL</label>
+
+      <textarea
+        id="qrText"
+        placeholder="Example: https://example.com"
+      ></textarea>
+
+      <div class="buttons">
+        <button onclick="generateQR()">Generate QR Code</button>
+        <button class="clear-btn" onclick="clearQR()">Clear</button>
+      </div>
+
+      <div class="qr-area">
+
+        <div id="qrcode"></div>
+
+        <button id="downloadBtn" onclick="downloadQR()">
+          Download QR Code
+        </button>
+
+      </div>
+
+      <div class="info">
+
+        <h2>Free Online QR Code Generator</h2>
+
+        <p>
+          Create QR codes quickly and easily with QuickToolHub.
+          Enter a website URL, text, phone number or any other information
+          and generate your QR code instantly.
+        </p>
+
+        <div class="faq">
+
+          <h3>What is a QR code?</h3>
+          <p>
+            A QR code is a scannable code that can store information such as
+            website links, text and contact information.
+          </p>
+
+          <h3>Is this QR Code Generator free?</h3>
+          <p>
+            Yes. You can generate QR codes online for free.
+          </p>
+
+          <h3>Can I download my QR code?</h3>
+          <p>
+            Yes. After generating the QR code, click the Download QR Code button
+            to save it as an image.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- QR Code Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+
+    let qrCode;
+
+    function generateQR() {
+
+      const text = document.getElementById("qrText").value.trim();
+      const qrContainer = document.getElementById("qrcode");
+      const downloadBtn = document.getElementById("downloadBtn");
+
+      if (text === "") {
+        alert("Please enter text or a URL first.");
+        return;
+      }
+
+      qrContainer.innerHTML = "";
+
+      qrCode = new QRCode(qrContainer, {
+        text: text,
+        width: 220,
+        height: 220,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      downloadBtn.style.display = "block";
+    }
+
+    function clearQR() {
+
+      document.getElementById("qrText").value = "";
+      document.getElementById("qrcode").innerHTML = "";
+      document.getElementById("downloadBtn").style.display = "none";
+
+    }
+
+    function downloadQR() {
+
+      const qrCanvas = document.querySelector("#qrcode canvas");
+
+      if (!qrCanvas) {
+        alert("Please generate a QR code first.");
+        return;
+      }
+
+      const link = document.createElement("a");
+
+      link.download = "quicktoolhub-qr-code.png";
+      link.href = qrCanvas.toDataURL("image/png");
+
+      link.click();
+
+    }
+
+  </script>
+
+</body>
+</html>
