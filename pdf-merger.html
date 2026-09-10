@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PDF Merger - Merge PDF Files Online Free | QuickToolHub</title>
+
+<meta name="description" content="Merge multiple PDF files into one PDF online for free with QuickToolHub PDF Merger. No installation required.">
+
+<link rel="stylesheet" href="pdf-merger.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>PDF Merger</h1>
+
+    <p class="subtitle">
+        Merge multiple PDF files into one PDF quickly and easily.
+    </p>
+
+    <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">📄</div>
+
+        <h2>Select PDF Files</h2>
+
+        <p>
+            Click here or drag and drop your PDF files
+        </p>
+
+        <input
+            type="file"
+            id="fileInput"
+            accept="application/pdf"
+            multiple
+            hidden
+        >
+
+        <button type="button" id="selectBtn">
+            Choose PDF Files
+        </button>
+    </div>
+
+    <div id="fileList" class="file-list"></div>
+
+    <div class="actions">
+
+        <button
+            type="button"
+            id="mergeBtn"
+            disabled
+        >
+            Merge PDFs
+        </button>
+
+        <button
+            type="button"
+            id="clearBtn"
+        >
+            Clear
+        </button>
+
+    </div>
+
+    <div id="progressContainer" class="progress-container">
+
+        <div class="progress-bar-bg">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <p id="progressText"></p>
+
+    </div>
+
+    <div id="result" class="result"></div>
+
+    <button
+        type="button"
+        id="downloadBtn"
+        class="download-btn"
+        style="display:none;"
+    >
+        Download Merged PDF
+    </button>
+
+    <section class="info">
+
+        <h2>How to Merge PDF Files?</h2>
+
+        <ol>
+            <li>Select two or more PDF files.</li>
+            <li>Arrange the files in the order you want.</li>
+            <li>Click the "Merge PDFs" button.</li>
+            <li>Download your merged PDF file.</li>
+        </ol>
+
+        <h2>PDF Merger Online</h2>
+
+        <p>
+            QuickToolHub PDF Merger lets you combine multiple PDF files
+            into a single PDF document directly in your browser.
+            No software installation is required.
+        </p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>Is this PDF merger free?</h3>
+        <p>
+            Yes, you can merge PDF files online for free.
+        </p>
+
+        <h3>How many PDF files can I merge?</h3>
+        <p>
+            You can select multiple PDF files and merge them into one document.
+        </p>
+
+        <h3>Are my PDF files uploaded?</h3>
+        <p>
+            The tool processes your files directly in your browser.
+        </p>
+
+    </section>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+<script src="pdf-merger.js"></script>
+
+</body>
+</html>
