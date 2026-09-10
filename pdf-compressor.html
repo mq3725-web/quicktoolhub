@@ -1,167 +1,283 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+let selectedFile = null;
+let compressedBlob = null;
 
-  <title>PDF Compressor - Compress PDF Online Free | QuickToolHub</title>
+const uploadArea = document.getElementById("uploadArea");
+const fileInput = document.getElementById("fileInput");
+const fileInfo = document.getElementById("fileInfo");
+const compressionLevel = document.getElementById("compressionLevel");
+const compressBtn = document.getElementById("compressBtn");
+const clearBtn = document.getElementById("clearBtn");
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
+const progressText = document.getElementById("progressText");
+const result = document.getElementById("result");
+const downloadBtn = document.getElementById("downloadBtn");
 
-  <meta name="description" content="Compress PDF files online for free. Reduce PDF file size quickly and easily with QuickToolHub.">
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-  <link rel="stylesheet" href="pdf-compressor.css">
-</head>
+uploadArea.addEventListener("click", () => {
+    fileInput.click();
+});
 
-<body>
+fileInput.addEventListener("change", function () {
+    if (this.files.length > 0) {
+        handleFile(this.files[0]);
+    }
+});
 
-  <div class="container">
+uploadArea.addEventListener("dragover", function (e) {
+    e.preventDefault();
+    uploadArea.classList.add("dragover");
+});
 
-    <div class="tool-box">
+uploadArea.addEventListener("dragleave", function () {
+    uploadArea.classList.remove("dragover");
+});
 
-      <h1>PDF Compressor</h1>
+uploadArea.addEventListener("drop", function (e) {
+    e.preventDefault();
+    uploadArea.classList.remove("dragover");
 
-      <p class="description">
-        Compress your PDF file and reduce its size online for free.
-      </p>
+    if (e.dataTransfer.files.length > 0) {
+        handleFile(e.dataTransfer.files[0]);
+    }
+});
 
-      <div class="upload-area" id="uploadArea">
+function handleFile(file) {
+    if (file.type !== "application/pdf") {
+        alert("Please select a PDF file.");
+        return;
+    }
 
-        <p>📄 Click here to select a PDF</p>
+    selectedFile = file;
 
-        <p>or choose a PDF file from your device</p>
+    fileInfo.textContent =
+        file.name + " (" + formatBytes(file.size) + ")";
 
-        <input
-          type="file"
-          id="pdfFile"
-          accept="application/pdf"
-        >
+    compressBtn.disabled = false;
+    result.style.display = "none";
+}
 
-        <div class="file-name" id="fileName"></div>
+compressBtn.addEventListener("click", async function () {
+    if (!selectedFile) {
+        alert("Please select a PDF first.");
+        return;
+    }
 
-      </div>
+    compressBtn.disabled = true;
+    clearBtn.disabled = true;
 
-      <div class="settings">
+    progressContainer.style.display = "block";
+    result.style.display = "none";
 
-        <label for="compressionLevel">
-          Compression Level
-        </label>
+    progressBar.style.width = "0%";
+    progressText.textContent = "Starting...";
 
-        <select id="compressionLevel">
+    try {
+        const arrayBuffer = await selectedFile.arrayBuffer();
 
-          <option value="low">
-            Low Compression - Better Quality
-          </option>
+        const pdf = await pdfjsLib.getDocument({
+            data: arrayBuffer
+        }).promise;
 
-          <option value="medium" selected>
-            Medium Compression - Recommended
-          </option>
+        const { jsPDF } = window.jspdf;
 
-          <option value="high">
-            High Compression - Smaller File
-          </option>
+        let quality = 0.7;
+        let renderScale = 1.2;
 
-        </select>
+        if (compressionLevel.value === "low") {
+            quality = 0.85;
+            renderScale = 1.5;
+        }
 
-      </div>
+        if (compressionLevel.value === "medium") {
+            quality = 0.65;
+            renderScale = 1.2;
+        }
 
-      <div class="buttons">
+        if (compressionLevel.value === "high") {
+            quality = 0.45;
+            renderScale = 0.9;
+        }
 
-        <button id="compressBtn" disabled>
-          Compress PDF
-        </button>
+        let outputPdf = null;
 
-        <button id="clearBtn" class="clear-btn">
-          Clear
-        </button>
+        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
 
-      </div>
+            progressText.textContent =
+                "Compressing page " +
+                pageNumber +
+                " of " +
+                pdf.numPages +
+                "...";
 
-      <div class="progress-box" id="progressBox">
+            const page = await pdf.getPage(pageNumber);
 
-        <div class="progress-bar">
+            const baseViewport = page.getViewport({
+                scale: 1
+            });
 
-          <div class="progress" id="progress"></div>
+            const viewport = page.getViewport({
+                scale: renderScale
+            });
 
-        </div>
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
 
-        <p class="status" id="statusText"></p>
+            canvas.width = Math.floor(viewport.width);
+            canvas.height = Math.floor(viewport.height);
 
-      </div>
+            await page.render({
+                canvasContext: context,
+                viewport: viewport
+            }).promise;
 
-      <div class="result" id="result">
+            const imageData = canvas.toDataURL(
+                "image/jpeg",
+                quality
+            );
 
-        <h2>Compression Complete!</h2>
+            const pageWidth = baseViewport.width * 0.352777778;
+            const pageHeight = baseViewport.height * 0.352777778;
 
-        <p>
-          Original Size:
-          <strong id="originalSize"></strong>
-        </p>
+            const orientation =
+                pageWidth > pageHeight ? "landscape" : "portrait";
 
-        <p>
-          Compressed Size:
-          <strong id="compressedSize"></strong>
-        </p>
+            if (pageNumber === 1) {
+                outputPdf = new jsPDF({
+                    orientation: orientation,
+                    unit: "mm",
+                    format: [pageWidth, pageHeight],
+                    compress: true
+                });
+            } else {
+                outputPdf.addPage(
+                    [pageWidth, pageHeight],
+                    orientation
+                );
+            }
 
-        <a
-          id="downloadBtn"
-          class="download-btn"
-          href="#"
-          download
-        >
-          Download Compressed PDF
-        </a>
+            outputPdf.addImage(
+                imageData,
+                "JPEG",
+                0,
+                0,
+                pageWidth,
+                pageHeight,
+                undefined,
+                "FAST"
+            );
 
-      </div>
+            const percent =
+                Math.round((pageNumber / pdf.numPages) * 100);
 
-      <div class="info">
+            progressBar.style.width = percent + "%";
+        }
 
-        <h2>Free PDF Compressor</h2>
+        compressedBlob = outputPdf.output("blob");
 
-        <p>
-          QuickToolHub PDF Compressor helps you reduce the size of PDF
-          documents quickly. Select your PDF, choose a compression level,
-          and download the compressed file.
-        </p>
+        const originalSize = selectedFile.size;
+        const newSize = compressedBlob.size;
 
-        <div class="faq">
+        const reduction =
+            ((originalSize - newSize) / originalSize) * 100;
 
-          <h3>Is this PDF Compressor free?</h3>
+        result.style.display = "block";
 
-          <p>
-            Yes. You can use this PDF compressor for free.
-          </p>
+        if (reduction > 0) {
+            result.innerHTML =
+                "<strong>Compression complete!</strong><br>" +
+                "Original size: " +
+                formatBytes(originalSize) +
+                "<br>" +
+                "Compressed size: " +
+                formatBytes(newSize) +
+                "<br>" +
+                "Saved: " +
+                reduction.toFixed(1) +
+                "%";
+        } else {
+            result.innerHTML =
+                "<strong>Compression complete!</strong><br>" +
+                "Original size: " +
+                formatBytes(originalSize) +
+                "<br>" +
+                "New size: " +
+                formatBytes(newSize) +
+                "<br>" +
+                "This PDF could not be reduced further.";
+        }
 
-          <h3>Can I compress a large PDF?</h3>
+        downloadBtn.style.display = "inline-block";
 
-          <p>
-            You can try compressing most PDF files directly in your browser.
-            Very large files may take longer to process.
-          </p>
+        progressBar.style.width = "100%";
+        progressText.textContent = "Done!";
+    } catch (error) {
+        console.error(error);
 
-          <h3>Which compression level should I choose?</h3>
+        alert(
+            "Sorry, something went wrong while compressing the PDF."
+        );
 
-          <p>
-            Medium compression is recommended for a good balance between
-            file size and quality.
-          </p>
+        progressContainer.style.display = "none";
+    }
 
-        </div>
+    compressBtn.disabled = false;
+    clearBtn.disabled = false;
+});
 
-      </div>
+downloadBtn.addEventListener("click", function () {
+    if (!compressedBlob) return;
 
-    </div>
+    const url = URL.createObjectURL(compressedBlob);
 
-  </div>
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "compressed-" + selectedFile.name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 
+    URL.revokeObjectURL(url);
+});
 
-  <!-- PDF.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+clearBtn.addEventListener("click", function () {
+    selectedFile = null;
+    compressedBlob = null;
 
-  <!-- jsPDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    fileInput.value = "";
+    fileInfo.textContent = "No file selected";
 
+    compressBtn.disabled = true;
+    downloadBtn.style.display = "none";
 
-  <!-- Your JavaScript -->
-  <script src="pdf-compressor.js"></script>
+    progressContainer.style.display = "none";
+    result.style.display = "none";
 
-</body>
-</html>
+    progressBar.style.width = "0%";
+    progressText.textContent = "";
+});
+
+function formatBytes(bytes) {
+    if (bytes === 0) return "0 Bytes";
+
+    const units = [
+        "Bytes",
+        "KB",
+        "MB",
+        "GB"
+    ];
+
+    const i = Math.floor(
+        Math.log(bytes) / Math.log(1024)
+    );
+
+    return (
+        parseFloat(
+            (bytes / Math.pow(1024, i)).toFixed(2)
+        ) +
+        " " +
+        units[i]
+    );
+}
