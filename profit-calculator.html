@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Profit Calculator - Free Online Tool | QuickToolHub</title>
+
+<meta name="description" content="Free online Profit Calculator. Calculate profit amount, profit percentage, cost price and selling price easily.">
+
+<link rel="canonical" href="https://mq3725-web.github.io/quicktoolhub/profit-calculator.html">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+margin:0;
+padding:20px;
+color:#111827;
+}
+
+.container{
+max-width:600px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+box-sizing:border-box;
+border:1px solid #d1d5db;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:20px;
+padding:18px;
+background:#f3f4f6;
+border-radius:8px;
+font-size:18px;
+line-height:1.8;
+}
+
+.back{
+background:#6b7280;
+}
+
+.info{
+margin-top:35px;
+line-height:1.7;
+color:#4b5563;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📈 Profit Calculator</h1>
+
+<input type="number" id="cost" placeholder="Cost Price">
+
+<input type="number" id="selling" placeholder="Selling Price">
+
+<button onclick="calculateProfit()">Calculate Profit</button>
+
+<div class="result" id="result">
+Enter values to calculate profit.
+</div>
+
+<button class="back" onclick="window.location.href='index.html'">
+← Back to Home
+</button>
+
+<div class="info">
+
+<h2>About Profit Calculator</h2>
+
+<p>
+Our free Profit Calculator helps you calculate profit amount and profit percentage quickly using the cost price and selling price.
+</p>
+
+<h2>How to Use</h2>
+
+<p>
+1. Enter the cost price of the product.<br>
+2. Enter the selling price.<br>
+3. Click Calculate Profit.<br>
+4. Your profit and profit percentage will appear instantly.
+</p>
+
+<h2>Profit Formula</h2>
+
+<p>
+Profit = Selling Price − Cost Price
+</p>
+
+<p>
+Profit Percentage = (Profit ÷ Cost Price) × 100
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this Profit Calculator free?</h3>
+<p>Yes, it is completely free to use.</p>
+
+<h3>Can it calculate a loss?</h3>
+<p>Yes. If the selling price is lower than the cost price, the calculator will show the loss amount and loss percentage.</p>
+
+</div>
+
+</div>
+
+<script>
+
+function calculateProfit(){
+
+let cost = parseFloat(document.getElementById("cost").value);
+let selling = parseFloat(document.getElementById("selling").value);
+
+if(isNaN(cost) || isNaN(selling) || cost <= 0 || selling < 0){
+
+document.getElementById("result").innerHTML =
+"Please enter valid prices.";
+
+return;
+}
+
+let difference = selling - cost;
+let percentage = (Math.abs(difference) / cost) * 100;
+
+if(difference > 0){
+
+document.getElementById("result").innerHTML =
+"Profit: " + difference.toFixed(2) +
+"<br>Profit Percentage: " + percentage.toFixed(2) + "%";
+
+}else if(difference < 0){
+
+document.getElementById("result").innerHTML =
+"Loss: " + Math.abs(difference).toFixed(2) +
+"<br>Loss Percentage: " + percentage.toFixed(2) + "%";
+
+}else{
+
+document.getElementById("result").innerHTML =
+"No Profit, No Loss";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
