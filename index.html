@@ -36,6 +36,14 @@ nav a{color:#fff;text-decoration:none;margin-left:22px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
 .card{background:#fff;padding:25px;border-radius:15px;box-shadow:0 5px 18px rgba(0,0,0,.07);cursor:pointer;transition:.25s;border:1px solid #eef0f4}
 .card:hover{transform:translateY(-6px);box-shadow:0 12px 25px rgba(37,99,235,.15)}
+.card::after{
+content:"Use Tool →";
+display:block;
+margin-top:15px;
+color:#2563eb;
+font-weight:bold;
+font-size:14px;
+}
 .icon{font-size:32px;margin-bottom:12px}.card h3{margin:0 0 10px;font-size:18px}.card p{color:#6b7280;font-size:14px;margin:0;line-height:1.5}
 .tool{display:none;max-width:650px;margin:50px auto;padding:35px;background:#fff;border-radius:18px;box-shadow:0 8px 30px rgba(0,0,0,.1)}
 .tool h2{text-align:center;margin-top:0}
