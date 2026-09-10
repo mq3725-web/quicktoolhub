@@ -1,283 +1,103 @@
-let selectedFile = null;
-let compressedBlob = null;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-const uploadArea = document.getElementById("uploadArea");
-const fileInput = document.getElementById("fileInput");
-const fileInfo = document.getElementById("fileInfo");
-const compressionLevel = document.getElementById("compressionLevel");
-const compressBtn = document.getElementById("compressBtn");
-const clearBtn = document.getElementById("clearBtn");
-const progressContainer = document.getElementById("progressContainer");
-const progressBar = document.getElementById("progressBar");
-const progressText = document.getElementById("progressText");
-const result = document.getElementById("result");
-const downloadBtn = document.getElementById("downloadBtn");
+    <title>PDF Compressor - QuickToolHub</title>
+    <meta name="description" content="Compress PDF files online and reduce their file size quickly and easily.">
 
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    <link rel="stylesheet" href="pdf-compressor.css">
+</head>
 
-uploadArea.addEventListener("click", () => {
-    fileInput.click();
-});
+<body>
 
-fileInput.addEventListener("change", function () {
-    if (this.files.length > 0) {
-        handleFile(this.files[0]);
-    }
-});
+    <div class="container">
 
-uploadArea.addEventListener("dragover", function (e) {
-    e.preventDefault();
-    uploadArea.classList.add("dragover");
-});
+        <h1>PDF Compressor</h1>
 
-uploadArea.addEventListener("dragleave", function () {
-    uploadArea.classList.remove("dragover");
-});
+        <p class="description">
+            Compress your PDF files and reduce their size while keeping good quality.
+        </p>
 
-uploadArea.addEventListener("drop", function (e) {
-    e.preventDefault();
-    uploadArea.classList.remove("dragover");
+        <div class="tool-box">
 
-    if (e.dataTransfer.files.length > 0) {
-        handleFile(e.dataTransfer.files[0]);
-    }
-});
+            <div id="uploadArea" class="upload-area">
+                <div class="upload-icon">📄</div>
 
-function handleFile(file) {
-    if (file.type !== "application/pdf") {
-        alert("Please select a PDF file.");
-        return;
-    }
+                <h3>Upload PDF</h3>
 
-    selectedFile = file;
+                <p>Click here or drag & drop your PDF file</p>
 
-    fileInfo.textContent =
-        file.name + " (" + formatBytes(file.size) + ")";
+                <input
+                    type="file"
+                    id="fileInput"
+                    accept="application/pdf"
+                    hidden
+                >
+            </div>
 
-    compressBtn.disabled = false;
-    result.style.display = "none";
-}
+            <p id="fileInfo" class="file-info">
+                No file selected
+            </p>
 
-compressBtn.addEventListener("click", async function () {
-    if (!selectedFile) {
-        alert("Please select a PDF first.");
-        return;
-    }
+            <div class="option-group">
 
-    compressBtn.disabled = true;
-    clearBtn.disabled = true;
+                <label for="compressionLevel">
+                    Compression Level
+                </label>
 
-    progressContainer.style.display = "block";
-    result.style.display = "none";
+                <select id="compressionLevel">
+                    <option value="low">Low - Better Quality</option>
+                    <option value="medium" selected>Medium - Recommended</option>
+                    <option value="high">High - Smaller Size</option>
+                </select>
 
-    progressBar.style.width = "0%";
-    progressText.textContent = "Starting...";
+            </div>
 
-    try {
-        const arrayBuffer = await selectedFile.arrayBuffer();
+            <div class="buttons">
 
-        const pdf = await pdfjsLib.getDocument({
-            data: arrayBuffer
-        }).promise;
+                <button id="compressBtn" disabled>
+                    Compress PDF
+                </button>
 
-        const { jsPDF } = window.jspdf;
+                <button id="clearBtn" type="button">
+                    Clear
+                </button>
 
-        let quality = 0.7;
-        let renderScale = 1.2;
+            </div>
 
-        if (compressionLevel.value === "low") {
-            quality = 0.85;
-            renderScale = 1.5;
-        }
+            <div id="progressContainer" style="display:none;">
 
-        if (compressionLevel.value === "medium") {
-            quality = 0.65;
-            renderScale = 1.2;
-        }
+                <div class="progress">
+                    <div id="progressBar"></div>
+                </div>
 
-        if (compressionLevel.value === "high") {
-            quality = 0.45;
-            renderScale = 0.9;
-        }
+                <p id="progressText"></p>
 
-        let outputPdf = null;
+            </div>
 
-        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+            <div id="result" class="result" style="display:none;"></div>
 
-            progressText.textContent =
-                "Compressing page " +
-                pageNumber +
-                " of " +
-                pdf.numPages +
-                "...";
+            <button
+                id="downloadBtn"
+                style="display:none;"
+            >
+                Download Compressed PDF
+            </button>
 
-            const page = await pdf.getPage(pageNumber);
+        </div>
 
-            const baseViewport = page.getViewport({
-                scale: 1
-            });
+    </div>
 
-            const viewport = page.getViewport({
-                scale: renderScale
-            });
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
-            const canvas = document.createElement("canvas");
-            const context = canvas.getContext("2d");
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-            canvas.width = Math.floor(viewport.width);
-            canvas.height = Math.floor(viewport.height);
+    <!-- Our JavaScript -->
+    <script src="pdf-compressor.js"></script>
 
-            await page.render({
-                canvasContext: context,
-                viewport: viewport
-            }).promise;
-
-            const imageData = canvas.toDataURL(
-                "image/jpeg",
-                quality
-            );
-
-            const pageWidth = baseViewport.width * 0.352777778;
-            const pageHeight = baseViewport.height * 0.352777778;
-
-            const orientation =
-                pageWidth > pageHeight ? "landscape" : "portrait";
-
-            if (pageNumber === 1) {
-                outputPdf = new jsPDF({
-                    orientation: orientation,
-                    unit: "mm",
-                    format: [pageWidth, pageHeight],
-                    compress: true
-                });
-            } else {
-                outputPdf.addPage(
-                    [pageWidth, pageHeight],
-                    orientation
-                );
-            }
-
-            outputPdf.addImage(
-                imageData,
-                "JPEG",
-                0,
-                0,
-                pageWidth,
-                pageHeight,
-                undefined,
-                "FAST"
-            );
-
-            const percent =
-                Math.round((pageNumber / pdf.numPages) * 100);
-
-            progressBar.style.width = percent + "%";
-        }
-
-        compressedBlob = outputPdf.output("blob");
-
-        const originalSize = selectedFile.size;
-        const newSize = compressedBlob.size;
-
-        const reduction =
-            ((originalSize - newSize) / originalSize) * 100;
-
-        result.style.display = "block";
-
-        if (reduction > 0) {
-            result.innerHTML =
-                "<strong>Compression complete!</strong><br>" +
-                "Original size: " +
-                formatBytes(originalSize) +
-                "<br>" +
-                "Compressed size: " +
-                formatBytes(newSize) +
-                "<br>" +
-                "Saved: " +
-                reduction.toFixed(1) +
-                "%";
-        } else {
-            result.innerHTML =
-                "<strong>Compression complete!</strong><br>" +
-                "Original size: " +
-                formatBytes(originalSize) +
-                "<br>" +
-                "New size: " +
-                formatBytes(newSize) +
-                "<br>" +
-                "This PDF could not be reduced further.";
-        }
-
-        downloadBtn.style.display = "inline-block";
-
-        progressBar.style.width = "100%";
-        progressText.textContent = "Done!";
-    } catch (error) {
-        console.error(error);
-
-        alert(
-            "Sorry, something went wrong while compressing the PDF."
-        );
-
-        progressContainer.style.display = "none";
-    }
-
-    compressBtn.disabled = false;
-    clearBtn.disabled = false;
-});
-
-downloadBtn.addEventListener("click", function () {
-    if (!compressedBlob) return;
-
-    const url = URL.createObjectURL(compressedBlob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "compressed-" + selectedFile.name;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    URL.revokeObjectURL(url);
-});
-
-clearBtn.addEventListener("click", function () {
-    selectedFile = null;
-    compressedBlob = null;
-
-    fileInput.value = "";
-    fileInfo.textContent = "No file selected";
-
-    compressBtn.disabled = true;
-    downloadBtn.style.display = "none";
-
-    progressContainer.style.display = "none";
-    result.style.display = "none";
-
-    progressBar.style.width = "0%";
-    progressText.textContent = "";
-});
-
-function formatBytes(bytes) {
-    if (bytes === 0) return "0 Bytes";
-
-    const units = [
-        "Bytes",
-        "KB",
-        "MB",
-        "GB"
-    ];
-
-    const i = Math.floor(
-        Math.log(bytes) / Math.log(1024)
-    );
-
-    return (
-        parseFloat(
-            (bytes / Math.pow(1024, i)).toFixed(2)
-        ) +
-        " " +
-        units[i]
-    );
-}
+</body>
+</html>
