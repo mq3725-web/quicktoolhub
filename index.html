@@ -1663,26 +1663,36 @@ function calculateDateDiff(){let a=date1.value,b=date2.value;if(!a||!b)return da
 let countdownInterval;
 function startCountdown(){clearInterval(countdownInterval);let target=new Date(countdownDate.value).getTime();if(!target)return countdownResult.innerHTML="Please select a future date.";function update(){let d=target-Date.now();if(d<=0){clearInterval(countdownInterval);return countdownResult.innerHTML="🎉 Countdown Finished!";}let days=Math.floor(d/86400000),hrs=Math.floor(d%86400000/3600000),mins=Math.floor(d%3600000/60000),secs=Math.floor(d%60000/1000);countdownResult.innerHTML=days+" Days "+hrs+" Hours "+mins+" Minutes "+secs+" Seconds"}update();countdownInterval=setInterval(update,1000)}
 function generateRandom(){let a=parseInt(min.value),b=parseInt(max.value);if(isNaN(a)||isNaN(b)||a>b)return randomResult.innerHTML="Enter a valid minimum and maximum.";randomResult.innerHTML="Random Number: "+(Math.floor(Math.random()*(b-a+1))+a)}
-function searchTools(){
-const searchBox=document.getElementById("search");
-const s=searchBox.value.toLowerCase().trim();
+function filterTools(value){
+    let search=value.toLowerCase().trim();
 
-document.querySelectorAll("#tools .category").forEach(category=>{
-let visible=0;
+    let categories=document.querySelectorAll(".category");
 
-category.querySelectorAll(".card").forEach(card=>{
-const text=card.textContent.toLowerCase();
-const match=s==="" || text.includes(s);
+    categories.forEach(function(category){
 
-card.style.display=match?"flex":"none";
+        let cards=category.querySelectorAll(".card");
+        let found=0;
 
-if(match){
-visible++;
-}
-});
+        cards.forEach(function(card){
 
-category.style.display=visible>0?"block":"none";
-});
+            let text=card.innerText.toLowerCase();
+
+            if(search==="" || text.includes(search)){
+                card.style.display="flex";
+                found++;
+            }else{
+                card.style.display="none";
+            }
+
+        });
+
+        if(found>0){
+            category.style.display="block";
+        }else{
+            category.style.display="none";
+        }
+
+    });
 }
 </script>
 </body>
