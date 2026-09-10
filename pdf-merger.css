@@ -1,0 +1,226 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #222;
+}
+
+.container {
+    width: 90%;
+    max-width: 850px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.upload-area {
+    background: white;
+    border: 2px dashed #999;
+    border-radius: 15px;
+    padding: 45px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+    border-color: #333;
+    background: #fafafa;
+}
+
+.upload-icon {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.upload-area h2 {
+    margin: 10px 0;
+}
+
+.upload-area p {
+    color: #777;
+}
+
+#selectBtn,
+#mergeBtn,
+#clearBtn,
+.download-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 8px 5px;
+}
+
+#selectBtn {
+    background: #222;
+    color: white;
+}
+
+#mergeBtn {
+    background: #2563eb;
+    color: white;
+}
+
+#mergeBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#clearBtn {
+    background: #ddd;
+    color: #222;
+}
+
+.download-btn {
+    background: #16a34a;
+    color: white;
+}
+
+.file-list {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.file-name {
+    font-weight: bold;
+    word-break: break-word;
+}
+
+.file-size {
+    color: #777;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.remove-file {
+    border: none;
+    background: #eee;
+    color: #c00;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.progress-container {
+    display: none;
+    margin-top: 25px;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 12px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #2563eb;
+    transition: width 0.2s;
+}
+
+#progressText {
+    color: #666;
+    margin-top: 10px;
+}
+
+.result {
+    display: none;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 25px;
+    line-height: 1.7;
+}
+
+.info {
+    background: white;
+    text-align: left;
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.info h2 {
+    margin-top: 25px;
+}
+
+.info h2:first-child {
+    margin-top: 0;
+}
+
+.info h3 {
+    margin-top: 20px;
+}
+
+.info p,
+.info li {
+    line-height: 1.7;
+    color: #555;
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .upload-area {
+        padding: 35px 15px;
+    }
+
+    .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .file-size {
+        margin-left: 0;
+    }
+
+    #selectBtn,
+    #mergeBtn,
+    #clearBtn,
+    .download-btn {
+        width: 90%;
+        margin: 6px auto;
+    }
+
+    .info {
+        padding: 20px;
+    }
+}
