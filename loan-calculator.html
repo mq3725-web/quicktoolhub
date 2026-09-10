@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loan Calculator - QuickToolHub</title>
+<meta name="description" content="Free online Loan Calculator. Calculate monthly loan payments, total payment and total interest.">
+
+<link rel="canonical" href="https://mq3725-web.github.io/quicktoolhub/loan-calculator.html">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    color:#111827;
+}
+
+.container{
+    max-width:700px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+h1{text-align:center}
+
+label{
+    display:block;
+    margin-top:18px;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    margin-top:20px;
+    border:0;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.result{
+    margin-top:20px;
+    padding:18px;
+    background:#eef2ff;
+    border-radius:8px;
+    line-height:1.8;
+    font-weight:bold;
+}
+
+.back{
+    background:#374151;
+}
+
+.info{
+    margin-top:35px;
+    line-height:1.7;
+    color:#4b5563;
+}
+
+.info h2,.info h3{
+    color:#111827;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+
+<h1>💰 Loan Calculator</h1>
+
+<p>Calculate your estimated monthly loan payment, total payment and total interest.</p>
+
+<label for="amount">Loan Amount</label>
+<input type="number" id="amount" placeholder="Enter loan amount">
+
+<label for="rate">Annual Interest Rate (%)</label>
+<input type="number" id="rate" step="0.01" placeholder="e.g. 10">
+
+<label for="years">Loan Term (Years)</label>
+<input type="number" id="years" placeholder="e.g. 5">
+
+<button onclick="calculateLoan()">Calculate Loan</button>
+
+<div class="result" id="loanResult">
+Your loan calculation will appear here.
+</div>
+
+<button class="back" onclick="window.location.href='index.html'">
+← Back to QuickToolHub
+</button>
+
+<div class="info">
+
+<h2>About Loan Calculator</h2>
+
+<p>
+QuickToolHub's free Loan Calculator helps you estimate monthly loan payments, total repayment and total interest based on the loan amount, interest rate and loan term.
+</p>
+
+<h2>How to Use</h2>
+
+<p>
+1. Enter the loan amount.<br>
+2. Enter the annual interest rate.<br>
+3. Enter the loan term in years.<br>
+4. Click "Calculate Loan".<br>
+5. Your estimated monthly payment will appear instantly.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this Loan Calculator free?</h3>
+
+<p>
+Yes. QuickToolHub's Loan Calculator is completely free to use.
+</p>
+
+<h3>What does the calculator show?</h3>
+
+<p>
+It shows the estimated monthly payment, total payment and total interest.
+</p>
+
+<h3>Are the results exact?</h3>
+
+<p>
+The results are estimates. Actual loan payments may vary depending on the lender, fees, taxes and other terms.
+</p>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+function calculateLoan(){
+
+    let amount = parseFloat(document.getElementById("amount").value);
+    let annualRate = parseFloat(document.getElementById("rate").value);
+    let years = parseFloat(document.getElementById("years").value);
+
+    let result = document.getElementById("loanResult");
+
+    if(
+        isNaN(amount) ||
+        isNaN(annualRate) ||
+        isNaN(years) ||
+        amount <= 0 ||
+        annualRate < 0 ||
+        years <= 0
+    ){
+        result.innerHTML = "Please enter valid loan details.";
+        return;
+    }
+
+    let months = years * 12;
+    let monthlyRate = annualRate / 100 / 12;
+
+    let monthlyPayment;
+
+    if(monthlyRate === 0){
+
+        monthlyPayment = amount / months;
+
+    }else{
+
+        monthlyPayment =
+            amount *
+            monthlyRate *
+            Math.pow(1 + monthlyRate, months) /
+            (Math.pow(1 + monthlyRate, months) - 1);
+    }
+
+    let totalPayment = monthlyPayment * months;
+    let totalInterest = totalPayment - amount;
+
+    result.innerHTML =
+        "Monthly Payment: " + monthlyPayment.toFixed(2) +
+        "<br>Total Payment: " + totalPayment.toFixed(2) +
+        "<br>Total Interest: " + totalInterest.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>
