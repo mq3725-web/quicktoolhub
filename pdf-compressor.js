@@ -16,7 +16,7 @@ const downloadBtn = document.getElementById("downloadBtn");
 pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-uploadArea.addEventListener("click", () => {
+uploadArea.addEventListener("click", function () {
     fileInput.click();
 });
 
@@ -57,9 +57,11 @@ function handleFile(file) {
 
     compressBtn.disabled = false;
     result.style.display = "none";
+    downloadBtn.style.display = "none";
 }
 
 compressBtn.addEventListener("click", async function () {
+
     if (!selectedFile) {
         alert("Please select a PDF first.");
         return;
@@ -70,11 +72,13 @@ compressBtn.addEventListener("click", async function () {
 
     progressContainer.style.display = "block";
     result.style.display = "none";
+    downloadBtn.style.display = "none";
 
     progressBar.style.width = "0%";
     progressText.textContent = "Starting...";
 
     try {
+
         const arrayBuffer = await selectedFile.arrayBuffer();
 
         const pdf = await pdfjsLib.getDocument({
@@ -103,7 +107,11 @@ compressBtn.addEventListener("click", async function () {
 
         let outputPdf = null;
 
-        for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+        for (
+            let pageNumber = 1;
+            pageNumber <= pdf.numPages;
+            pageNumber++
+        ) {
 
             progressText.textContent =
                 "Compressing page " +
@@ -150,13 +158,16 @@ compressBtn.addEventListener("click", async function () {
                     : "portrait";
 
             if (pageNumber === 1) {
+
                 outputPdf = new jsPDF({
                     orientation: orientation,
                     unit: "mm",
                     format: [pageWidth, pageHeight],
                     compress: true
                 });
+
             } else {
+
                 outputPdf.addPage(
                     [pageWidth, pageHeight],
                     orientation
@@ -179,13 +190,18 @@ compressBtn.addEventListener("click", async function () {
                     (pageNumber / pdf.numPages) * 100
                 );
 
-            progressBar.style.width = percent + "%";
+            progressBar.style.width =
+                percent + "%";
         }
 
-        compressedBlob = outputPdf.output("blob");
+        compressedBlob =
+            outputPdf.output("blob");
 
-        const originalSize = selectedFile.size;
-        const newSize = compressedBlob.size;
+        const originalSize =
+            selectedFile.size;
+
+        const newSize =
+            compressedBlob.size;
 
         const reduction =
             ((originalSize - newSize) / originalSize) * 100;
@@ -193,6 +209,7 @@ compressBtn.addEventListener("click", async function () {
         result.style.display = "block";
 
         if (reduction > 0) {
+
             result.innerHTML =
                 "<strong>Compression complete!</strong><br>" +
                 "Original size: " +
@@ -204,7 +221,9 @@ compressBtn.addEventListener("click", async function () {
                 "Saved: " +
                 reduction.toFixed(1) +
                 "%";
+
         } else {
+
             result.innerHTML =
                 "<strong>Compression complete!</strong><br>" +
                 "Original size: " +
@@ -216,19 +235,24 @@ compressBtn.addEventListener("click", async function () {
                 "This PDF could not be reduced further.";
         }
 
-        downloadBtn.style.display = "inline-block";
+        downloadBtn.style.display =
+            "inline-block";
 
         progressBar.style.width = "100%";
-        progressText.textContent = "Done!";
+
+        progressText.textContent =
+            "Done!";
 
     } catch (error) {
+
         console.error(error);
 
         alert(
             "Sorry, something went wrong while compressing the PDF."
         );
 
-        progressContainer.style.display = "none";
+        progressContainer.style.display =
+            "none";
     }
 
     compressBtn.disabled = false;
@@ -236,13 +260,19 @@ compressBtn.addEventListener("click", async function () {
 });
 
 downloadBtn.addEventListener("click", function () {
-    if (!compressedBlob) return;
 
-    const url = URL.createObjectURL(compressedBlob);
+    if (!compressedBlob) {
+        return;
+    }
 
-    const a = document.createElement("a");
+    const url =
+        URL.createObjectURL(compressedBlob);
+
+    const a =
+        document.createElement("a");
 
     a.href = url;
+
     a.download =
         "compressed-" + selectedFile.name;
 
@@ -267,15 +297,20 @@ clearBtn.addEventListener("click", function () {
 
     compressBtn.disabled = true;
 
-    downloadBtn.style.display = "none";
+    downloadBtn.style.display =
+        "none";
 
-    progressContainer.style.display = "none";
+    progressContainer.style.display =
+        "none";
 
-    result.style.display = "none";
+    result.style.display =
+        "none";
 
-    progressBar.style.width = "0%";
+    progressBar.style.width =
+        "0%";
 
-    progressText.textContent = "";
+    progressText.textContent =
+        "";
 });
 
 function formatBytes(bytes) {
@@ -291,9 +326,10 @@ function formatBytes(bytes) {
         "GB"
     ];
 
-    const i = Math.floor(
-        Math.log(bytes) / Math.log(1024)
-    );
+    const i =
+        Math.floor(
+            Math.log(bytes) / Math.log(1024)
+        );
 
     return (
         parseFloat(
