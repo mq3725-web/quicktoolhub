@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Length Converter - Free Online Tool | QuickToolHub</title>
+
+<meta name="description" content="Free online Length Converter. Convert meters, kilometers, centimeters, feet, inches and miles instantly.">
+
+<link rel="canonical" href="https://mq3725-web.github.io/quicktoolhub/length-converter.html">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+margin:0;
+padding:20px;
+color:#111827;
+}
+
+.container{
+max-width:600px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+text-align:center;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:10px 0;
+box-sizing:border-box;
+border:1px solid #d1d5db;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.result{
+margin-top:20px;
+padding:18px;
+background:#f3f4f6;
+border-radius:8px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+}
+
+.back{
+background:#6b7280;
+}
+
+.info{
+margin-top:35px;
+line-height:1.7;
+color:#4b5563;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📏 Length Converter</h1>
+
+<input type="number" id="value" placeholder="Enter Length">
+
+<select id="from">
+<option value="meter">Meter</option>
+<option value="kilometer">Kilometer</option>
+<option value="centimeter">Centimeter</option>
+<option value="millimeter">Millimeter</option>
+<option value="foot">Foot</option>
+<option value="inch">Inch</option>
+<option value="mile">Mile</option>
+</select>
+
+<select id="to">
+<option value="meter">Meter</option>
+<option value="kilometer">Kilometer</option>
+<option value="centimeter">Centimeter</option>
+<option value="millimeter">Millimeter</option>
+<option value="foot">Foot</option>
+<option value="inch">Inch</option>
+<option value="mile">Mile</option>
+</select>
+
+<button onclick="convertLength()">Convert</button>
+
+<div class="result" id="result">
+Result: —
+</div>
+
+<button class="back" onclick="window.location.href='index.html'">
+← Back to Home
+</button>
+
+<div class="info">
+
+<h2>About Length Converter</h2>
+
+<p>
+Our free Length Converter helps you convert measurements between meters, kilometers, centimeters, millimeters, feet, inches and miles.
+</p>
+
+<h2>How to Use</h2>
+
+<p>
+1. Enter the length value.<br>
+2. Select the unit you are converting from.<br>
+3. Select the unit you want to convert to.<br>
+4. Click Convert.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this Length Converter free?</h3>
+<p>Yes, it is completely free to use.</p>
+
+<h3>Which units are supported?</h3>
+<p>
+Meters, kilometers, centimeters, millimeters, feet, inches and miles are supported.
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const units = {
+meter: 1,
+kilometer: 1000,
+centimeter: 0.01,
+millimeter: 0.001,
+foot: 0.3048,
+inch: 0.0254,
+mile: 1609.344
+};
+
+function convertLength(){
+
+let value = parseFloat(document.getElementById("value").value);
+let from = document.getElementById("from").value;
+let to = document.getElementById("to").value;
+
+if(isNaN(value)){
+
+document.getElementById("result").innerHTML =
+"Please enter a valid length.";
+
+return;
+
+}
+
+let meters = value * units[from];
+let result = meters / units[to];
+
+document.getElementById("result").innerHTML =
+result.toFixed(6).replace(/\.?0+$/,"");
+
+}
+
+</script>
+
+</body>
+</html>
