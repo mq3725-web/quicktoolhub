@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GPA Calculator - Free Online GPA Calculator | QuickToolHub</title>
+
+<meta name="description" content="Free online GPA Calculator. Calculate your GPA easily using course grade points and credit hours.">
+
+<link rel="canonical" href="https://mq3725-web.github.io/quicktoolhub/gpa-calculator.html">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+margin:0;
+padding:20px;
+color:#111827;
+}
+
+.container{
+max-width:700px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+text-align:center;
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-bottom:10px;
+}
+
+input{
+width:100%;
+padding:12px;
+box-sizing:border-box;
+border:1px solid #d1d5db;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:20px;
+padding:20px;
+background:#f3f4f6;
+border-radius:8px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+}
+
+.back{
+background:#6b7280;
+}
+
+.info{
+margin-top:35px;
+line-height:1.7;
+color:#4b5563;
+}
+
+.small{
+font-size:14px;
+color:#6b7280;
+margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎓 GPA Calculator</h1>
+
+<p class="small">
+Enter the grade points and credit hours for each course.
+</p>
+
+<div id="courses">
+
+<div class="row">
+<input type="number" class="grade" placeholder="Grade Point" step="0.01" min="0">
+<input type="number" class="credit" placeholder="Credit Hours" step="0.5" min="0">
+</div>
+
+<div class="row">
+<input type="number" class="grade" placeholder="Grade Point" step="0.01" min="0">
+<input type="number" class="credit" placeholder="Credit Hours" step="0.5" min="0">
+</div>
+
+<div class="row">
+<input type="number" class="grade" placeholder="Grade Point" step="0.01" min="0">
+<input type="number" class="credit" placeholder="Credit Hours" step="0.5" min="0">
+</div>
+
+</div>
+
+<button onclick="addCourse()">+ Add Course</button>
+
+<button onclick="calculateGPA()">Calculate GPA</button>
+
+<div class="result" id="result">
+Your GPA: —
+</div>
+
+<button class="back" onclick="window.location.href='index.html'">
+← Back to Home
+</button>
+
+<div class="info">
+
+<h2>About GPA Calculator</h2>
+
+<p>
+Our free GPA Calculator helps students calculate their Grade Point Average using course grade points and credit hours.
+</p>
+
+<h2>How to Use</h2>
+
+<p>
+1. Enter the grade point for each course.<br>
+2. Enter the credit hours for each course.<br>
+3. Add more courses if needed.<br>
+4. Click Calculate GPA.
+</p>
+
+<h2>GPA Formula</h2>
+
+<p>
+GPA = Total Quality Points ÷ Total Credit Hours
+</p>
+
+<p>
+Quality Points = Grade Point × Credit Hours
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this GPA Calculator free?</h3>
+<p>Yes, it is completely free to use.</p>
+
+<h3>Can I add more courses?</h3>
+<p>Yes. Click the Add Course button to add as many courses as needed.</p>
+
+</div>
+
+</div>
+
+<script>
+
+function addCourse(){
+
+let courses = document.getElementById("courses");
+
+let row = document.createElement("div");
+
+row.className = "row";
+
+row.innerHTML = `
+<input type="number" class="grade" placeholder="Grade Point" step="0.01" min="0">
+<input type="number" class="credit" placeholder="Credit Hours" step="0.5" min="0">
+`;
+
+courses.appendChild(row);
+
+}
+
+function calculateGPA(){
+
+let grades = document.querySelectorAll(".grade");
+let credits = document.querySelectorAll(".credit");
+
+let totalQualityPoints = 0;
+let totalCredits = 0;
+
+for(let i = 0; i < grades.length; i++){
+
+let grade = parseFloat(grades[i].value);
+let credit = parseFloat(credits[i].value);
+
+if(!isNaN(grade) && !isNaN(credit) && credit > 0){
+
+totalQualityPoints += grade * credit;
+totalCredits += credit;
+
+}
+
+}
+
+if(totalCredits === 0){
+
+document.getElementById("result").innerHTML =
+"Please enter valid grade points and credit hours.";
+
+return;
+
+}
+
+let gpa = totalQualityPoints / totalCredits;
+
+document.getElementById("result").innerHTML =
+"Your GPA: " + gpa.toFixed(2);
+
+}
+
+</script>
+
+</body>
+</html>
