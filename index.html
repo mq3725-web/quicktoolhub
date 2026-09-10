@@ -49,13 +49,16 @@ border-color:#93c5fd;
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
 .card{
 background:#fff;
-padding:25px;
+padding:28px 25px;
 border-radius:15px;
 box-shadow:0 5px 18px rgba(0,0,0,.07);
 cursor:pointer;
 transition:transform .25s,box-shadow .25s,border-color .25s;
 border:1px solid #eef0f4;
 min-height:190px;
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
 }
 
 .card:hover{
