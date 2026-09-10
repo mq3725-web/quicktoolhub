@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Random Number Generator - Free Online Tool | QuickToolHub</title>
+
+<meta name="description" content="Generate random numbers instantly with this free online Random Number Generator. Choose a minimum and maximum value and get a random number.">
+
+<link rel="canonical" href="https://mq3725-web.github.io/quicktoolhub/random-number-generator.html">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+margin:0;
+padding:20px;
+color:#111827;
+}
+
+.container{
+max-width:600px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+box-sizing:border-box;
+border:1px solid #d1d5db;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:10px;
+}
+
+.result{
+margin-top:20px;
+padding:20px;
+background:#f3f4f6;
+border-radius:8px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+}
+
+.back{
+background:#6b7280;
+font-size:16px;
+}
+
+.info{
+margin-top:35px;
+line-height:1.7;
+color:#4b5563;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎲 Random Number Generator</h1>
+
+<input type="number" id="min" placeholder="Minimum Number">
+
+<input type="number" id="max" placeholder="Maximum Number">
+
+<button onclick="generateNumber()">Generate Random Number</button>
+
+<div class="result" id="result">—</div>
+
+<button class="back" onclick="window.location.href='index.html'">
+← Back to Home
+</button>
+
+<div class="info">
+
+<h2>About Random Number Generator</h2>
+
+<p>
+This free Random Number Generator creates a random number between your chosen minimum and maximum values.
+</p>
+
+<h2>How to Use</h2>
+
+<p>
+1. Enter the minimum number.<br>
+2. Enter the maximum number.<br>
+3. Click Generate Random Number.<br>
+4. Your random number will appear instantly.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this tool free?</h3>
+<p>Yes, this Random Number Generator is completely free.</p>
+
+<h3>Can I generate numbers between any two values?</h3>
+<p>Yes. Enter your desired minimum and maximum values.</p>
+
+</div>
+
+</div>
+
+<script>
+function generateNumber(){
+
+let min = parseInt(document.getElementById("min").value);
+let max = parseInt(document.getElementById("max").value);
+
+if(isNaN(min) || isNaN(max) || min > max){
+document.getElementById("result").innerHTML =
+"Enter valid numbers";
+return;
+}
+
+let random = Math.floor(Math.random() * (max - min + 1)) + min;
+
+document.getElementById("result").innerHTML = random;
+
+}
+</script>
+
+</body>
+</html>
