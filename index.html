@@ -1664,21 +1664,20 @@ let countdownInterval;
 function startCountdown(){clearInterval(countdownInterval);let target=new Date(countdownDate.value).getTime();if(!target)return countdownResult.innerHTML="Please select a future date.";function update(){let d=target-Date.now();if(d<=0){clearInterval(countdownInterval);return countdownResult.innerHTML="🎉 Countdown Finished!";}let days=Math.floor(d/86400000),hrs=Math.floor(d%86400000/3600000),mins=Math.floor(d%3600000/60000),secs=Math.floor(d%60000/1000);countdownResult.innerHTML=days+" Days "+hrs+" Hours "+mins+" Minutes "+secs+" Seconds"}update();countdownInterval=setInterval(update,1000)}
 function generateRandom(){let a=parseInt(min.value),b=parseInt(max.value);if(isNaN(a)||isNaN(b)||a>b)return randomResult.innerHTML="Enter a valid minimum and maximum.";randomResult.innerHTML="Random Number: "+(Math.floor(Math.random()*(b-a+1))+a)}
 function searchTools(){
-let searchBox=document.getElementById("search");
-let s=searchBox.value.toLowerCase().trim();
+const searchBox=document.getElementById("search");
+const s=searchBox.value.toLowerCase().trim();
 
-document.querySelectorAll(".category").forEach(category=>{
-let cards=category.querySelectorAll(".card");
+document.querySelectorAll("#tools .category").forEach(category=>{
 let visible=0;
 
-cards.forEach(card=>{
-let text=card.innerText.toLowerCase();
+category.querySelectorAll(".card").forEach(card=>{
+const text=card.textContent.toLowerCase();
+const match=s==="" || text.includes(s);
 
-if(s==="" || text.includes(s)){
-card.style.display="flex";
+card.style.display=match?"flex":"none";
+
+if(match){
 visible++;
-}else{
-card.style.display="none";
 }
 });
 
