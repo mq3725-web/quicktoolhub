@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Text Case Converter - Free Online Tool | QuickToolHub</title>
+
+<meta name="description" content="Free online Text Case Converter. Convert text to uppercase, lowercase, title case and sentence case instantly.">
+
+<link rel="canonical" href="https://mq3725-web.github.io/quicktoolhub/text-case-converter.html">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+margin:0;
+padding:20px;
+color:#111827;
+}
+
+.container{
+max-width:700px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+h1{
+text-align:center;
+}
+
+textarea{
+width:100%;
+height:180px;
+padding:12px;
+box-sizing:border-box;
+border:1px solid #d1d5db;
+border-radius:8px;
+font-size:16px;
+resize:vertical;
+}
+
+.buttons{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:15px;
+}
+
+button{
+padding:12px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+font-size:15px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.back{
+width:100%;
+margin-top:10px;
+background:#6b7280;
+}
+
+.info{
+margin-top:35px;
+line-height:1.7;
+color:#4b5563;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔤 Text Case Converter</h1>
+
+<textarea id="text" placeholder="Enter or paste your text here..."></textarea>
+
+<div class="buttons">
+<button onclick="upperCase()">UPPERCASE</button>
+<button onclick="lowerCase()">lowercase</button>
+<button onclick="titleCase()">Title Case</button>
+<button onclick="sentenceCase()">Sentence case</button>
+</div>
+
+<button class="back" onclick="window.location.href='index.html'">
+← Back to Home
+</button>
+
+<div class="info">
+
+<h2>About Text Case Converter</h2>
+
+<p>
+Our free Text Case Converter lets you quickly change text into uppercase, lowercase, title case, or sentence case.
+</p>
+
+<h2>How to Use</h2>
+
+<p>
+1. Enter or paste your text.<br>
+2. Choose the required text case.<br>
+3. Your text will be converted instantly.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this Text Case Converter free?</h3>
+<p>Yes, it is completely free to use.</p>
+
+<h3>Can I convert large text?</h3>
+<p>Yes. You can paste paragraphs or longer text into the converter.</p>
+
+</div>
+
+</div>
+
+<script>
+
+function upperCase(){
+let text=document.getElementById("text");
+text.value=text.value.toUpperCase();
+}
+
+function lowerCase(){
+let text=document.getElementById("text");
+text.value=text.value.toLowerCase();
+}
+
+function titleCase(){
+let text=document.getElementById("text");
+text.value=text.value.toLowerCase().replace(/\b\w/g,function(c){
+return c.toUpperCase();
+});
+}
+
+function sentenceCase(){
+let text=document.getElementById("text");
+
+text.value=text.value
+.toLowerCase()
+.replace(/(^\s*\w|[.!?]\s*\w)/g,function(c){
+return c.toUpperCase();
+});
+}
+
+</script>
+
+</body>
+</html>
