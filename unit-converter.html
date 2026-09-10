@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit Converter - QuickToolHub</title>
+<meta name="description" content="Free online Unit Converter. Convert length, weight, temperature and other common units instantly.">
+
+<link rel="canonical" href="https://mq3725-web.github.io/quicktoolhub/unit-converter.html">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f5f7fb;
+    color:#111827;
+}
+
+.container{
+    max-width:700px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+h1{text-align:center}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+select,input{
+    width:100%;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    margin-top:20px;
+    border:0;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.result{
+    margin-top:20px;
+    padding:15px;
+    background:#eef2ff;
+    border-radius:8px;
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.back{
+    background:#374151;
+}
+
+.info{
+    margin-top:35px;
+    line-height:1.7;
+    color:#4b5563;
+}
+
+.info h2,.info h3{
+    color:#111827;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<div class="card">
+
+<h1>🔄 Unit Converter</h1>
+
+<p>Convert common units quickly and easily.</p>
+
+<label>Conversion Type</label>
+<select id="type" onchange="updateUnits()">
+    <option value="length">Length</option>
+    <option value="weight">Weight</option>
+    <option value="temperature">Temperature</option>
+</select>
+
+<label>Value</label>
+<input type="number" id="value" placeholder="Enter value">
+
+<label>From</label>
+<select id="from"></select>
+
+<label>To</label>
+<select id="to"></select>
+
+<button onclick="convert()">Convert</button>
+
+<div class="result" id="result">
+Your result will appear here.
+</div>
+
+<button class="back" onclick="window.location.href='index.html'">
+← Back to QuickToolHub
+</button>
+
+<div class="info">
+
+<h2>About Unit Converter</h2>
+
+<p>
+QuickToolHub's free Unit Converter helps you convert common measurements such as length, weight and temperature.
+</p>
+
+<h2>How to Use</h2>
+
+<p>
+1. Select the type of conversion.<br>
+2. Enter your value.<br>
+3. Select the unit you are converting from.<br>
+4. Select the unit you want to convert to.<br>
+5. Click "Convert".
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this Unit Converter free?</h3>
+
+<p>
+Yes. QuickToolHub's Unit Converter is completely free to use.
+</p>
+
+<h3>Which units can I convert?</h3>
+
+<p>
+You can currently convert length, weight and temperature units.
+</p>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+const units = {
+
+    length:{
+        meter:1,
+        kilometer:1000,
+        centimeter:0.01,
+        millimeter:0.001,
+        mile:1609.344,
+        yard:0.9144,
+        foot:0.3048,
+        inch:0.0254
+    },
+
+    weight:{
+        kilogram:1,
+        gram:0.001,
+        milligram:0.000001,
+        pound:0.45359237,
+        ounce:0.0283495231
+    },
+
+    temperature:{
+        celsius:1,
+        fahrenheit:1,
+        kelvin:1
+    }
+
+};
+
+function updateUnits(){
+
+    let type = document.getElementById("type").value;
+
+    let from = document.getElementById("from");
+    let to = document.getElementById("to");
+
+    from.innerHTML = "";
+    to.innerHTML = "";
+
+    Object.keys(units[type]).forEach(unit => {
+
+        let option1 = document.createElement("option");
+        option1.value = unit;
+        option1.textContent = unit.charAt(0).toUpperCase() + unit.slice(1);
+
+        let option2 = option1.cloneNode(true);
+
+        from.appendChild(option1);
+        to.appendChild(option2);
+
+    });
+
+    if(type === "length"){
+        to.value = "kilometer";
+    }
+
+    if(type === "weight"){
+        to.value = "pound";
+    }
+
+    if(type === "temperature"){
+        to.value = "fahrenheit";
+    }
+}
+
+function convert(){
+
+    let type = document.getElementById("type").value;
+    let value = parseFloat(document.getElementById("value").value);
+    let from = document.getElementById("from").value;
+    let to = document.getElementById("to").value;
+    let result = document.getElementById("result");
+
+    if(isNaN(value)){
+        result.innerHTML = "Please enter a valid number.";
+        return;
+    }
+
+    let answer;
+
+    if(type === "temperature"){
+
+        if(from === to){
+            answer = value;
+        }
+
+        else if(from === "celsius" && to === "fahrenheit"){
+            answer = (value * 9/5) + 32;
+        }
+
+        else if(from === "fahrenheit" && to === "celsius"){
+            answer = (value - 32) * 5/9;
+        }
+
+        else if(from === "celsius" && to === "kelvin"){
+            answer = value + 273.15;
+        }
+
+        else if(from === "kelvin" && to === "celsius"){
+            answer = value - 273.15;
+        }
+
+        else if(from === "fahrenheit" && to === "kelvin"){
+            answer = (value - 32) * 5/9 + 273.15;
+        }
+
+        else if(from === "kelvin" && to === "fahrenheit"){
+            answer = (value - 273.15) * 9/5 + 32;
+        }
+
+    }else{
+
+        let baseValue = value * units[type][from];
+
+        answer = baseValue / units[type][to];
+
+    }
+
+    result.innerHTML =
+        value + " " + from + " = " + answer.toFixed(4) + " " + to;
+}
+
+updateUnits();
+
+</script>
+
+</body>
+</html>
