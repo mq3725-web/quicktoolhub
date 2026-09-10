@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Countdown Timer - QuickToolHub</title>
+<meta name="description" content="Free online Countdown Timer. Countdown to any future date and time in days, hours, minutes and seconds.">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#222;
+}
+
+header{
+  background:#2563eb;
+  color:white;
+  padding:25px 15px;
+  text-align:center;
+}
+
+header h1{
+  margin:0 0 8px;
+  font-size:32px;
+}
+
+header p{
+  margin:0;
+  font-size:16px;
+}
+
+.container{
+  max-width:700px;
+  margin:35px auto;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.08);
+  text-align:center;
+}
+
+label{
+  display:block;
+  margin:15px 0 8px;
+  font-weight:bold;
+  text-align:left;
+}
+
+input{
+  width:100%;
+  padding:13px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:16px;
+}
+
+button{
+  margin-top:20px;
+  padding:13px 25px;
+  border:none;
+  border-radius:8px;
+  background:#2563eb;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#1d4ed8;
+}
+
+#result{
+  margin-top:25px;
+  font-size:22px;
+  font-weight:bold;
+}
+
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+
+.box{
+  background:#eef4ff;
+  padding:18px 8px;
+  border-radius:10px;
+}
+
+.number{
+  display:block;
+  font-size:28px;
+  font-weight:bold;
+  color:#2563eb;
+}
+
+.unit{
+  font-size:13px;
+  color:#555;
+}
+
+.back{
+  display:inline-block;
+  margin-top:25px;
+  text-decoration:none;
+  color:#2563eb;
+  font-weight:bold;
+}
+
+section{
+  background:white;
+  margin-top:25px;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 3px 12px rgba(0,0,0,0.06);
+}
+
+section h2{
+  margin-top:0;
+}
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#666;
+  font-size:14px;
+}
+
+@media(max-width:600px){
+  .countdown{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>⏳ Countdown Timer</h1>
+<p>Countdown to any future date and time</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<label for="targetDate">Select Date and Time</label>
+
+<input type="datetime-local" id="targetDate">
+
+<button onclick="startCountdown()">Start Countdown</button>
+
+<div id="result">
+Your countdown will appear here.
+</div>
+
+<div class="countdown" id="countdown" style="display:none;">
+
+<div class="box">
+<span class="number" id="days">0</span>
+<span class="unit">Days</span>
+</div>
+
+<div class="box">
+<span class="number" id="hours">0</span>
+<span class="unit">Hours</span>
+</div>
+
+<div class="box">
+<span class="number" id="minutes">0</span>
+<span class="unit">Minutes</span>
+</div>
+
+<div class="box">
+<span class="number" id="seconds">0</span>
+<span class="unit">Seconds</span>
+</div>
+
+</div>
+
+<a class="back" href="index.html">← Back to QuickToolHub</a>
+
+</div>
+
+<section>
+<h2>About Countdown Timer</h2>
+<p>
+QuickToolHub's free Countdown Timer helps you count down to any future
+date and time in days, hours, minutes and seconds.
+</p>
+</section>
+
+<section>
+<h2>How to Use</h2>
+<ol>
+<li>Select your future date and time.</li>
+<li>Click the "Start Countdown" button.</li>
+<li>The remaining time will appear instantly.</li>
+</ol>
+</section>
+
+<section>
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this Countdown Timer free?</h3>
+<p>Yes. QuickToolHub's Countdown Timer is completely free to use.</p>
+
+<h3>Can I use it for birthdays?</h3>
+<p>
+Yes. You can use it to count down to birthdays, exams, events,
+holidays and other important dates.
+</p>
+
+</section>
+
+</div>
+
+<footer>
+© 2026 QuickToolHub. All Rights Reserved.
+</footer>
+
+<script>
+let timer;
+
+function startCountdown(){
+
+clearInterval(timer);
+
+const input=document.getElementById("targetDate").value;
+const result=document.getElementById("result");
+const countdown=document.getElementById("countdown");
+
+if(!input){
+result.innerHTML="Please select a date and time.";
+countdown.style.display="none";
+return;
+}
+
+const target=new Date(input).getTime();
+
+if(target<=new Date().getTime()){
+result.innerHTML="Please select a future date and time.";
+countdown.style.display="none";
+return;
+}
+
+result.innerHTML="Time remaining:";
+countdown.style.display="grid";
+
+function update(){
+
+const now=new Date().getTime();
+const difference=target-now;
+
+if(difference<=0){
+
+clearInterval(timer);
+
+document.getElementById("days").innerText="0";
+document.getElementById("hours").innerText="0";
+document.getElementById("minutes").innerText="0";
+document.getElementById("seconds").innerText="0";
+
+result.innerHTML="🎉 Countdown finished!";
+return;
+}
+
+const days=Math.floor(difference/(1000*60*60*24));
+
+const hours=Math.floor(
+(difference/(1000*60*60))%24
+);
+
+const minutes=Math.floor(
+(difference/(1000*60))%60
+);
+
+const seconds=Math.floor(
+(difference/1000)%60
+);
+
+document.getElementById("days").innerText=days;
+document.getElementById("hours").innerText=hours;
+document.getElementById("minutes").innerText=minutes;
+document.getElementById("seconds").innerText=seconds;
+}
+
+update();
+
+timer=setInterval(update,1000);
+
+}
+</script>
+
+</body>
+</html>
