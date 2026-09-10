@@ -33,14 +33,22 @@ width:90%;
 max-width:650px;
 padding:17px 20px;
 border:1px solid #d1d5db;
-border-radius:12px;
+border-radius:14px;
 font-size:16px;
 outline:none;
-transition:.2s;
+background:#fff;
+box-shadow:0 4px 15px rgba(0,0,0,.05);
+transition:.25s;
 }
 
 .search:hover{
 border-color:#93c5fd;
+box-shadow:0 6px 20px rgba(37,99,235,.08);
+}
+
+.search:focus{
+border-color:#2563eb;
+box-shadow:0 0 0 4px rgba(37,99,235,.12),0 6px 20px rgba(37,99,235,.08);
 }
 .tools{max-width:1200px;margin:auto;padding:60px 20px}
 .section-title{text-align:center;font-size:32px;margin-bottom:12px}
